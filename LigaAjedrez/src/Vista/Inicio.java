@@ -130,7 +130,7 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         new panelRegistro().setVisible(true);
-        //Inicio().setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
