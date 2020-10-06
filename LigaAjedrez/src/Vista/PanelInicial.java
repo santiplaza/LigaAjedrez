@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,15 +16,26 @@ import javax.swing.JPanel;
  */
 public class PanelInicial extends JPanel {
     
-    private JLabel label;
+    private JLabel usuario;
+    private JLabel password;
+    private JLabel socioInfo;
     private JButton buttonRegistrarse;
     
     public PanelInicial()
     {
-        label = new JLabel("Usuario");
-        buttonRegistrarse = new JButton("Registrarse");
         
-        this.add(label);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
+        usuario = new JLabel("Usuario");
+        password = new JLabel("Contraseña");
+        socioInfo = new JLabel("¿Aún no eres socio?");
+        
+        buttonRegistrarse = new JButton("Registrarse");
+        buttonRegistrarse.setActionCommand("siguiente");
+        
+        this.add(usuario);
+        this.add(password);
+        this.add(buttonRegistrarse);
         
         this.setVisible(true);
     }
