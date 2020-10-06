@@ -143,14 +143,6 @@ public class ResponsableInfantil extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        this.setVisible(false);
-       
-    }
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        this.setVisible(false);
-        new MenuUsuario().setVisible(true);
-    } 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
