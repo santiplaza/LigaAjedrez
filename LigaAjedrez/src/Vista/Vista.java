@@ -11,4 +11,13 @@ package Vista;
  */
 public class Vista {
     
+    private Inicio inicio;
+    
+    public Vista()
+    {
+       inicio = new Inicio();
+       
+       inicio.setVisible(true);
+    }
+    
 }
