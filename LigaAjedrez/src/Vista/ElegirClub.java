@@ -14,8 +14,10 @@ public class ElegirClub extends javax.swing.JFrame {
     /**
      * Creates new form ElegirClub
      */
-    public ElegirClub() {
+    public ElegirClub(RegistroUsuario registroUsuario, Inicio inicio) {
         initComponents();
+        this.inicio = inicio;
+        this.registroUsuario = registroUsuario;
     }
 
     /**
@@ -30,8 +32,8 @@ public class ElegirClub extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        FinalizarRegistro = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,22 +46,22 @@ public class ElegirClub extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jButton1.setText("Finalizar registro");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        FinalizarRegistro.setText("Finalizar registro");
+        FinalizarRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                FinalizarRegistroMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        FinalizarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                FinalizarRegistroActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cancelar.setText("Cancelar");
+        Cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                CancelarMouseClicked(evt);
             }
         });
 
@@ -77,9 +79,9 @@ public class ElegirClub extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jButton2)
+                .addComponent(Cancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(FinalizarRegistro)
                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -91,68 +93,36 @@ public class ElegirClub extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(FinalizarRegistro)
+                    .addComponent(Cancelar))
                 .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void FinalizarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarRegistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_FinalizarRegistroActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarMouseClicked
         this.setVisible(false);
-        new Inicio().setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
+        registroUsuario.setVisible(true);
+    }//GEN-LAST:event_CancelarMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        this.setVisible(false);
-        new MenuUsuario().setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void FinalizarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarRegistroMouseClicked
+        this.dispose();
+        new MenuUsuario(inicio).setVisible(true);
+    }//GEN-LAST:event_FinalizarRegistroMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ElegirClub.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ElegirClub.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ElegirClub.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ElegirClub.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ElegirClub().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Cancelar;
+    private javax.swing.JButton FinalizarRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    private RegistroUsuario registroUsuario;
+    private Inicio inicio;
 }

@@ -9,21 +9,14 @@ package Vista;
  *
  * @author enrique
  */
-public class DatosClub extends javax.swing.JFrame {
+public class DatosResponsable extends javax.swing.JFrame {
 
     /**
-     * Creates new form DatosClub
+     * Creates new form DatosResponsable
      */
-    public DatosClub(MenuUsuario menuUsuario) {
+    public DatosResponsable(DatosUsuario datosUsuario) {
         initComponents();
-        this.menuUsuario = menuUsuario;
-        this.admin = false;
-    }
-    
-    public DatosClub(MenuAdmin menuAdmin) {
-        initComponents();
-        this.menuAdmin = menuAdmin;
-        this.admin = true;
+        this.datosUsuario = datosUsuario;
     }
 
     /**
@@ -39,25 +32,21 @@ public class DatosClub extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         Volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nombre del club:");
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setText("Datos del responsable:");
 
-        jLabel2.setText("Gerente del club:");
+        jLabel2.setText("jLabel2");
 
-        jLabel3.setText("Entrenador 1:");
+        jLabel3.setText("jLabel3");
 
-        jLabel4.setText("Entrenador 2:");
+        jLabel4.setText("jLabel4");
 
-        jButton1.setText("Darse de baja");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("jLabel5");
 
         Volver.setText("Volver");
         Volver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,37 +62,36 @@ public class DatosClub extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)))
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(159, 159, 159)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(Volver)))
-                .addContainerGap(240, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(27, 27, 27))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(Volver)
-                .addGap(21, 21, 21))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -111,25 +99,16 @@ public class DatosClub extends javax.swing.JFrame {
 
     private void VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VolverMouseClicked
         this.setVisible(false);
-        if (admin)
-            menuAdmin.setVisible(true);
-        else
-            menuUsuario.setVisible(true);
     }//GEN-LAST:event_VolverMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Volver;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
-    private MenuUsuario menuUsuario;
-    private MenuAdmin menuAdmin;
-    private boolean admin = false;
+    private DatosUsuario datosUsuario;
 }

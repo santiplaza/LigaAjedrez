@@ -18,6 +18,9 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        menuAdmin = new MenuAdmin(this);
+        menuUsuario = new MenuUsuario(this);
+        registroUsuario = new RegistroUsuario(this);
     }
 
     /**
@@ -35,9 +38,9 @@ public class Inicio extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Registrarse = new javax.swing.JButton();
+        IniciarAdmin = new javax.swing.JButton();
+        IniciarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -71,35 +74,30 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel3.setText("¿Aún no eres socio?");
 
-        jButton1.setText("Regístrate");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Registrarse.setText("Regístrate");
+        Registrarse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                RegistrarseMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Registrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RegistrarseActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Entrar como admin");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        IniciarAdmin.setText("Entrar como admin");
+        IniciarAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                IniciarAdminMouseClicked(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jButton3.setText("Iniciar sesión");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        IniciarSesion.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        IniciarSesion.setText("Iniciar sesión");
+        IniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                IniciarSesionMouseClicked(evt);
             }
         });
 
@@ -115,8 +113,8 @@ public class Inicio extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2)
+                        .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IniciarAdmin)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -134,7 +132,7 @@ public class Inicio extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(14, 14, 14)))))
                 .addContainerGap(71, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -158,46 +156,42 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(IniciarSesion)
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(IniciarAdmin)
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_RegistrarseActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void RegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarseMouseClicked
         // TODO add your handling code here:
-        new panelRegistro().setVisible(true);
+        registroUsuario.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_RegistrarseMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void IniciarAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarAdminMouseClicked
         this.setVisible(false);
-        new MenuAdmin().setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
+        menuAdmin.setVisible(true);
+    }//GEN-LAST:event_IniciarAdminMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void IniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarSesionMouseClicked
         this.setVisible(false);
-        new MenuUsuario().setVisible(true);
-    }//GEN-LAST:event_jButton3MouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        menuUsuario.setVisible(true);
+    }//GEN-LAST:event_IniciarSesionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -236,9 +230,9 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton IniciarAdmin;
+    private javax.swing.JButton IniciarSesion;
+    private javax.swing.JButton Registrarse;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -248,4 +242,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    private MenuAdmin menuAdmin;
+    private MenuUsuario menuUsuario;
+    private RegistroUsuario registroUsuario;
 }

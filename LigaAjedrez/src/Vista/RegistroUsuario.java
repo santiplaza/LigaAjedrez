@@ -9,13 +9,15 @@ package Vista;
  *
  * @author santi
  */
-public class panelRegistro extends javax.swing.JFrame {
+public class RegistroUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form panelRegistro2
      */
-    public panelRegistro() {
+    public RegistroUsuario(Inicio inicio) {
         initComponents();
+        this.inicio = inicio;
+        this.elegirClub = new ElegirClub(this,inicio);
     }
 
     /**
@@ -36,8 +38,8 @@ public class panelRegistro extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Registrarse = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
@@ -67,17 +69,17 @@ public class panelRegistro extends javax.swing.JFrame {
 
         jTextField4.setText("jTextField4");
 
-        jButton1.setText("Registrarse y elegir club");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Registrarse.setText("Registrarse y elegir club");
+        Registrarse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                RegistrarseMouseClicked(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cancelar.setText("Cancelar");
+        Cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                CancelarMouseClicked(evt);
             }
         });
 
@@ -112,9 +114,9 @@ public class panelRegistro extends javax.swing.JFrame {
                                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(Cancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))
+                                .addComponent(Registrarse)))
                         .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -163,8 +165,8 @@ public class panelRegistro extends javax.swing.JFrame {
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(Cancelar)
+                    .addComponent(Registrarse))
                 .addGap(17, 17, 17))
         );
 
@@ -175,55 +177,19 @@ public class panelRegistro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        new ElegirClub().setVisible(true);
+    private void RegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarseMouseClicked
+        elegirClub.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_RegistrarseMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarMouseClicked
         this.setVisible(false);
-        new Inicio().setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(panelRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(panelRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(panelRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(panelRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new panelRegistro().setVisible(true);
-            }
-        });
-    }
+        inicio.setVisible(true);
+    }//GEN-LAST:event_CancelarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Cancelar;
+    private javax.swing.JButton Registrarse;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -237,4 +203,6 @@ public class panelRegistro extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+    private Inicio inicio;
+    private ElegirClub elegirClub;
 }
