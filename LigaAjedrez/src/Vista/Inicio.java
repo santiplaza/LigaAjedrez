@@ -6,6 +6,9 @@
 package Vista;
 
 import java.awt.Image;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.util.Date;
 
 /**
  *
@@ -18,6 +21,12 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+  
+        datosList.add(new Usuario("enrike1221", "12345", "Enrique", "Juan Sempere", new Date(99,4,1), "Senior", "Valencia CF", true));
+        datosList.add(new Usuario("miguel99", "hola", "Miguel", "Ferrer Fornali", new Date(99,3,12),"Senior", "Valencia CF", false));
+        datosList.add(new Usuario("igrebou", "hola", "Ivan", "Gregori Bou", new Date(94,7,23), "Senior", "Valencia CF", false));
+        
+        //IMPORTANTE PASAR ESTOS DATOS LO ÚLTIMO
         menuAdmin = new MenuAdmin(this);
         menuUsuario = new MenuUsuario(this);
         registroUsuario = new RegistroUsuario(this);
@@ -35,11 +44,10 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        Password = new javax.swing.JPasswordField();
+        Usuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         Registrarse = new javax.swing.JButton();
-        IniciarAdmin = new javax.swing.JButton();
         IniciarSesion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -63,14 +71,9 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel2.setText("Contraseña:");
 
-        jPasswordField1.setToolTipText("Contraseña");
+        Password.setToolTipText("Contraseña");
 
-        jTextField1.setToolTipText("Usuario");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        Usuario.setToolTipText("Usuario");
 
         jLabel3.setText("¿Aún no eres socio?");
 
@@ -78,18 +81,6 @@ public class Inicio extends javax.swing.JFrame {
         Registrarse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RegistrarseMouseClicked(evt);
-            }
-        });
-        Registrarse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegistrarseActionPerformed(evt);
-            }
-        });
-
-        IniciarAdmin.setText("Entrar como admin");
-        IniciarAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                IniciarAdminMouseClicked(evt);
             }
         });
 
@@ -114,14 +105,13 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(IniciarAdmin)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +120,7 @@ public class Inicio extends javax.swing.JFrame {
                                         .addComponent(jLabel4))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(14, 14, 14)))))
@@ -148,51 +138,115 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(IniciarSesion)
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(IniciarAdmin)
-                .addGap(18, 18, 18))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RegistrarseActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void RegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarseMouseClicked
-        // TODO add your handling code here:
-        registroUsuario.setVisible(true);
         this.setVisible(false);
+        registroUsuario.setVisible(true);
     }//GEN-LAST:event_RegistrarseMouseClicked
 
-    private void IniciarAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarAdminMouseClicked
-        this.setVisible(false);
-        menuAdmin.setVisible(true);
-    }//GEN-LAST:event_IniciarAdminMouseClicked
-
     private void IniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarSesionMouseClicked
-        this.setVisible(false);
-        menuUsuario.setVisible(true);
+        
+        if(ComprobarDatosUser())
+        {
+            this.setVisible(false);
+            menuUsuario.setDatos(datosList);
+            menuUsuario.setUserOnline(userOnline);
+            menuUsuario.setLabels();
+            menuUsuario.setVisible(true);
+        }
+        else if (ComprobarDatosAdmin())
+        {
+            this.setVisible(false);
+            menuAdmin.setDatos(datosList);
+            menuAdmin.setUserOnline(userOnline);
+            menuAdmin.setLabels();
+            menuAdmin.setVisible(true);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            
     }//GEN-LAST:event_IniciarSesionMouseClicked
 
+    private boolean ComprobarDatosUser()
+    {
+        boolean encontrado = false;
+        
+        user = new String(Usuario.getText());
+        arrayC = Password.getPassword(); 
+        pass = new String(arrayC);
+        
+        for(int i = 0; i < datosList.size();i++)
+        {
+            if(!datosList.get(i).isAdmin())
+                if(datosList.get(i).getId().equals(user))
+                    if(datosList.get(i).getPassword().equals(pass))
+                    {
+                        userOnline = i;
+                        encontrado = true;
+                    }
+        }
+        
+        return encontrado;
+    }
+    private boolean ComprobarDatosAdmin()
+    {
+        boolean encontrado = false;
+        
+        user = new String(Usuario.getText());
+        arrayC = Password.getPassword(); 
+        pass = new String(arrayC);
+        
+        for(int i = 0; i < datosList.size();i++)
+        {
+            if(datosList.get(i).isAdmin())
+                if(datosList.get(i).getId().equals(user))
+                    if(datosList.get(i).getPassword().equals(pass))
+                    {
+                        userOnline = i;
+                        encontrado = true;
+                    }
+        }
+        
+        return encontrado;
+    }
+    
+    public ArrayList<Usuario> getDatos()
+    {
+        return datosList;
+    }
+    
+    public int getUserOnline()
+    {
+        return userOnline;
+    }
+    
+    public MenuUsuario getMenuUsuario()
+    {
+        return menuUsuario;
+    }
+    
+    public void setDatos(ArrayList<Usuario> datos)
+    {
+        datosList = datos;
+    }
     /**
      * @param args the command line arguments
      */
@@ -230,19 +284,23 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton IniciarAdmin;
     private javax.swing.JButton IniciarSesion;
+    private javax.swing.JPasswordField Password;
     private javax.swing.JButton Registrarse;
+    private javax.swing.JTextField Usuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     private MenuAdmin menuAdmin;
     private MenuUsuario menuUsuario;
     private RegistroUsuario registroUsuario;
+    private char[] arrayC;
+    private String user;
+    private String pass;
+    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
+    private int userOnline;
 }

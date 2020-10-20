@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author enrique
@@ -20,8 +22,9 @@ public class MenuAdmin extends javax.swing.JFrame {
         this.datosClub = new DatosClub(this);
         this.introduceResultados = new IntroduceResultados(this);
         this.reservaEntrenamiento = new ReservaEntrenamiento(this);
-        //this.datosUsuario = new DatosUsuario(this);
+        this.datosUsuario = new DatosUsuario(this);      
         this.administracionClubs = new AdministracionClubs(this);
+      
     }
 
     /**
@@ -41,6 +44,8 @@ public class MenuAdmin extends javax.swing.JFrame {
         MiClub = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         AdministrarClubs = new javax.swing.JButton();
+        usuarioLabel = new javax.swing.JLabel();
+        MisDatos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +75,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("Bienvenido,");
 
         FinalizarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CerrarSesion.png"))); // NOI18N
@@ -96,6 +102,16 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        usuarioLabel.setFont(new java.awt.Font("Lucida Grande", 3, 13)); // NOI18N
+        usuarioLabel.setText("jLabel2");
+
+        MisDatos.setText("Mis datos");
+        MisDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MisDatosMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,37 +123,46 @@ public class MenuAdmin extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(FinalizarSesion)
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(MiClub)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(MisDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MiClub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(AdministrarClubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(RegistrarDatosPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                             .addComponent(realizarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                             .addComponent(AsignarSede, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-                        .addGap(0, 89, Short.MAX_VALUE))))
+                        .addGap(0, 74, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel1))
-                    .addComponent(FinalizarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(usuarioLabel)))
+                    .addComponent(FinalizarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(MiClub))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(realizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(realizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MisDatos))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RegistrarDatosPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -183,15 +208,37 @@ public class MenuAdmin extends javax.swing.JFrame {
         administracionClubs.setVisible(true);
     }//GEN-LAST:event_AdministrarClubsMouseClicked
 
+    private void MisDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MisDatosMouseClicked
+        datosUsuario.setDatos(datosList);
+        datosUsuario.setUserOnline(userOnline);
+        datosUsuario.setLabels();
+        datosUsuario.setVisible(true);
+    }//GEN-LAST:event_MisDatosMouseClicked
+
+    public void setDatos(ArrayList<Usuario> datos)
+    {
+        datosList.addAll(datos);    
+    }
+    
+    public void setUserOnline (int i)
+    {
+        userOnline = i;
+    }
+    public void setLabels ()
+    {
+        usuarioLabel.setText(datosList.get(userOnline).getId());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdministrarClubs;
     private javax.swing.JButton AsignarSede;
     private javax.swing.JButton FinalizarSesion;
     private javax.swing.JButton MiClub;
+    private javax.swing.JButton MisDatos;
     private javax.swing.JButton RegistrarDatosPartida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton realizarReserva;
+    private javax.swing.JLabel usuarioLabel;
     // End of variables declaration//GEN-END:variables
     private Inicio inicio;
     private DatosClub datosClub;
@@ -199,4 +246,6 @@ public class MenuAdmin extends javax.swing.JFrame {
     private IntroduceResultados introduceResultados;
     private DatosUsuario datosUsuario;
     private AdministracionClubs administracionClubs;
+    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
+    private int userOnline;
 }

@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author enrique
@@ -18,6 +20,9 @@ public class ElegirClub extends javax.swing.JFrame {
         initComponents();
         this.inicio = inicio;
         this.registroUsuario = registroUsuario;
+        this.menuUsuario = inicio.getMenuUsuario();
+        this.datosList = inicio.getDatos();
+        System.out.println(datosList.size()-1 + "elegirClub constructor");
     }
 
     /**
@@ -111,10 +116,30 @@ public class ElegirClub extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelarMouseClicked
 
     private void FinalizarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarRegistroMouseClicked
-        this.dispose();
-        new MenuUsuario(inicio).setVisible(true);
+          //menuUsuario = new MenuUsuario(inicio).setVisible(true);
+          System.out.println(userOnline + "User Online");
+            menuUsuario.setDatos(datosList);
+            menuUsuario.setUserOnline(userOnline);
+            System.out.println(datosList.size()-1);
+            System.out.println(userOnline);
+            menuUsuario.setLabels();
+            menuUsuario.setVisible(true);
+            this.setVisible(false);
     }//GEN-LAST:event_FinalizarRegistroMouseClicked
-
+    
+    public void setDatos(ArrayList<Usuario> datos)
+    {
+        datosList = datos;    
+    }
+    
+    public void setUserOnline (int i)
+    {
+        userOnline = i;
+    }
+    public void setLabels ()
+    {
+  
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
@@ -125,4 +150,7 @@ public class ElegirClub extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private RegistroUsuario registroUsuario;
     private Inicio inicio;
+    private MenuUsuario menuUsuario;
+    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
+    private int userOnline;
 }

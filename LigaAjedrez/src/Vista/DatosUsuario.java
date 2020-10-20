@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author enrique
@@ -18,6 +21,24 @@ public class DatosUsuario extends javax.swing.JFrame {
         initComponents();
         this.menuUsuario = menuUsuario;
         this.datosResponsable = new DatosResponsable(this);
+        this.admin = false;
+        
+        DatosResponsable.setVisible(false);
+        nuevaContraseñaLabel.setVisible(false);
+        nuevaContraseñaField.setVisible(false);
+        Confirmar.setVisible(false);
+        ExitoLabel.setVisible(false);
+    }
+    public DatosUsuario(MenuAdmin menuAdmin) {
+        initComponents();
+        this.menuAdmin = menuAdmin;
+        this.datosResponsable = new DatosResponsable(this);
+        this.admin = true;
+        
+        DatosResponsable.setVisible(false);
+        nuevaContraseñaLabel.setVisible(false);
+        nuevaContraseñaField.setVisible(false);
+        Confirmar.setVisible(false);
     }
 
     /**
@@ -32,34 +53,34 @@ public class DatosUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         CambiarContraseña = new javax.swing.JButton();
         DatosResponsable = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jLabel0 = new javax.swing.JLabel();
+        categoriaUsuario = new javax.swing.JLabel();
+        nuevaContraseñaLabel = new javax.swing.JLabel();
+        nombreUsuario = new javax.swing.JLabel();
+        apellidosUsuario = new javax.swing.JLabel();
+        fechaUsuario = new javax.swing.JLabel();
+        nuevaContraseñaField = new javax.swing.JPasswordField();
+        Confirmar = new javax.swing.JButton();
+        Volver = new javax.swing.JButton();
+        ExitoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel1.setText("Nombre:");
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel2.setText("Apellidos:");
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel3.setText("Fecha de nacimento:");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
         CambiarContraseña.setText("Cambiar contraseña");
-        CambiarContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CambiarContraseñaActionPerformed(evt);
+        CambiarContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CambiarContraseñaMouseClicked(evt);
             }
         });
 
@@ -70,82 +91,126 @@ public class DatosUsuario extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Categoria:");
+        jLabel0.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jLabel0.setText("Categoria:");
 
-        jLabel5.setText("jLabel5");
+        categoriaUsuario.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        categoriaUsuario.setText("jLabel5");
 
-        jLabel6.setText("Nueva contraseña:");
+        nuevaContraseñaLabel.setText("Nueva contraseña:");
 
-        jTextField4.setText("jTextField4");
+        nombreUsuario.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        nombreUsuario.setText("jLabel7");
+
+        apellidosUsuario.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        apellidosUsuario.setText("jLabel7");
+
+        fechaUsuario.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        fechaUsuario.setText("jLabel7");
+
+        Confirmar.setText("Confirmar");
+        Confirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ConfirmarMouseClicked(evt);
+            }
+        });
+
+        Volver.setText("Volver");
+        Volver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VolverMouseClicked(evt);
+            }
+        });
+
+        ExitoLabel.setText("Contraseña cambiada con éxito!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(42, 42, 42)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(apellidosUsuario))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fechaUsuario)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(jLabel0)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(categoriaUsuario)
+                        .addGap(35, 35, 35))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addComponent(CambiarContraseña)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addComponent(DatosResponsable)
-                        .addGap(22, 22, 22))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DatosResponsable))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(nuevaContraseñaLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nuevaContraseñaField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Confirmar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(Volver)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ExitoLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel0)
+                    .addComponent(categoriaUsuario)
+                    .addComponent(nombreUsuario))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apellidosUsuario)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(fechaUsuario))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(DatosResponsable))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CambiarContraseña)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ExitoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CambiarContraseña)
-                    .addComponent(DatosResponsable))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                    .addComponent(nuevaContraseñaLabel)
+                    .addComponent(nuevaContraseñaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Confirmar))
+                .addGap(18, 18, 18)
+                .addComponent(Volver)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,25 +220,97 @@ public class DatosUsuario extends javax.swing.JFrame {
         datosResponsable.setVisible(true);
     }//GEN-LAST:event_DatosResponsableMouseClicked
 
-    private void CambiarContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambiarContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CambiarContraseñaActionPerformed
+    private void CambiarContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CambiarContraseñaMouseClicked
+        nuevaContraseñaLabel.setVisible(true);
+        nuevaContraseñaField.setVisible(true);
+        Confirmar.setVisible(true);
+    }//GEN-LAST:event_CambiarContraseñaMouseClicked
 
+    private void VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VolverMouseClicked
+        this.setVisible(false);
+        if (admin)
+            menuAdmin.setVisible(true);
+        else
+            menuUsuario.setVisible(true);
+    }//GEN-LAST:event_VolverMouseClicked
+
+    private void ConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmarMouseClicked
+        arrayC = nuevaContraseñaField.getPassword(); 
+        pass = new String(arrayC);
+        if(admin)
+        {
+            datosList.get(userOnline).setPassword(pass);
+            menuAdmin.setDatos(datosList);
+        }
+        else
+        {
+            datosList.get(userOnline).setPassword(pass);
+            menuUsuario.setDatos(datosList);
+        }
+        
+        nuevaContraseñaLabel.setVisible(false);
+        nuevaContraseñaField.setVisible(false);
+        ExitoLabel.setVisible(true);
+        Confirmar.setVisible(false);
+    }//GEN-LAST:event_ConfirmarMouseClicked
+    
+    public void setDatos(ArrayList<Usuario> datos)
+    {
+        datosList.addAll(datos);    
+    }
+    
+    public void setUserOnline (int i)
+    {
+        userOnline = i;
+    }
+    public void setLabels ()
+    {
+        nombreUsuario.setText(datosList.get(userOnline).getNombre());
+        apellidosUsuario.setText(datosList.get(userOnline).getApellidos());
+        fechaUsuario.setText(ConvertirFecha(datosList.get(userOnline).getFechaNacimiento()));
+        categoriaUsuario.setText(datosList.get(userOnline).getCategoria());
+        if(datosList.get(userOnline).getCategoria().equals("Infantil"))
+        {
+            DatosResponsable.setVisible(true);
+        }
+    }
+    
+    public String ConvertirFecha(Date fecha)
+    {
+        String dia = new String("");
+        String mes = new String("");
+        String anyo = new String("");
+        
+        dia = Integer.toString(fecha.getDate());
+        mes = Integer.toString(fecha.getMonth());
+        anyo = Integer.toString(fecha.getYear() + 1900);
+        
+        return dia+"/"+mes+"/"+anyo;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CambiarContraseña;
+    private javax.swing.JButton Confirmar;
     private javax.swing.JButton DatosResponsable;
+    private javax.swing.JLabel ExitoLabel;
+    private javax.swing.JButton Volver;
+    private javax.swing.JLabel apellidosUsuario;
+    private javax.swing.JLabel categoriaUsuario;
+    private javax.swing.JLabel fechaUsuario;
+    private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel nombreUsuario;
+    private javax.swing.JPasswordField nuevaContraseñaField;
+    private javax.swing.JLabel nuevaContraseñaLabel;
     // End of variables declaration//GEN-END:variables
     private MenuUsuario menuUsuario;
+    private MenuAdmin menuAdmin;
+    private boolean admin = false;
     private DatosResponsable datosResponsable;
+    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
+    private int userOnline;
+    private char[] arrayC;
+    private String pass;
 }

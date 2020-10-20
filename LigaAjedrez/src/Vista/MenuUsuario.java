@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author santi
@@ -21,6 +23,8 @@ public class MenuUsuario extends javax.swing.JFrame {
         this.introduceResultados = new IntroduceResultados(this);
         this.reservaEntrenamiento = new ReservaEntrenamiento(this);
         this.datosUsuario = new DatosUsuario(this);
+  
+        this.datosList= inicio.getDatos();
     }
 
     /**
@@ -39,6 +43,7 @@ public class MenuUsuario extends javax.swing.JFrame {
         MiClub = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         MisDatos = new javax.swing.JButton();
+        usuarioLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +77,7 @@ public class MenuUsuario extends javax.swing.JFrame {
         });
 
         jLabel1.setBackground(new java.awt.Color(255, 102, 102));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("Bienvenido,");
 
         MiClub.setText("Mi club");
@@ -95,6 +101,9 @@ public class MenuUsuario extends javax.swing.JFrame {
             }
         });
 
+        usuarioLabel.setFont(new java.awt.Font("Lucida Grande", 3, 13)); // NOI18N
+        usuarioLabel.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +115,9 @@ public class MenuUsuario extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(5, 5, 5)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(FinalizarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
@@ -126,7 +137,8 @@ public class MenuUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(FinalizarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(usuarioLabel))
                 .addGap(18, 18, 18)
                 .addComponent(MiClub)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
@@ -153,6 +165,7 @@ public class MenuUsuario extends javax.swing.JFrame {
 
     private void FinalizarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarSesionMouseClicked
         this.setVisible(false);
+        inicio.setDatos(datosList);
         inicio.setVisible(true);
     }//GEN-LAST:event_FinalizarSesionMouseClicked
 
@@ -170,9 +183,25 @@ public class MenuUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_MiClubActionPerformed
 
     private void MisDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MisDatosMouseClicked
+        datosUsuario.setDatos(datosList);
+        datosUsuario.setUserOnline(userOnline);
+        datosUsuario.setLabels();
         datosUsuario.setVisible(true);
     }//GEN-LAST:event_MisDatosMouseClicked
-
+    
+    public void setDatos(ArrayList<Usuario> datos)
+    {
+        datosList = datos;    
+    }
+    
+    public void setUserOnline (int i)
+    {
+        userOnline = i;
+    }
+    public void setLabels ()
+    {
+        usuarioLabel.setText(datosList.get(userOnline).getId());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton FinalizarSesion;
@@ -182,10 +211,13 @@ public class MenuUsuario extends javax.swing.JFrame {
     private javax.swing.JButton ReservaEntrenamiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel usuarioLabel;
     // End of variables declaration//GEN-END:variables
     private Inicio inicio;
     private DatosClub datosClub;
     private ReservaEntrenamiento reservaEntrenamiento;
     private IntroduceResultados introduceResultados;
     private DatosUsuario datosUsuario;
+    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
+    private int userOnline;
 }
