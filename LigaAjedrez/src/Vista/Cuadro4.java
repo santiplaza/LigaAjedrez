@@ -135,6 +135,7 @@ public class Cuadro4 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         sede3Label = new javax.swing.JLabel();
 
+        jugador1Label.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jugador1Label.setText("jLabel1");
 
         jLabel2.setText("vs.");
@@ -143,14 +144,19 @@ public class Cuadro4 extends javax.swing.JFrame {
 
         jLabel4.setText("vs.");
 
+        jugador2Label.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jugador2Label.setText("jLabel1");
 
+        jugador3Label.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jugador3Label.setText("jLabel6");
 
+        jugador4Label.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jugador4Label.setText("jLabel7");
 
+        final1Label.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         final1Label.setText("jLabel8");
 
+        final2Label.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         final2Label.setText("jLabel9");
 
         volverButton.setText("Volver");
@@ -180,6 +186,11 @@ public class Cuadro4 extends javax.swing.JFrame {
                 simular3ButtonMouseClicked(evt);
             }
         });
+        simular3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simular3ButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Sede:");
 
@@ -197,83 +208,80 @@ public class Cuadro4 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(101, 101, 101))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(simular1Button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(simular2Button)
-                .addGap(54, 54, 54))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(volverButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(sede1Label)
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel5)
+                        .addComponent(simular1Button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sede2Label))
+                        .addComponent(simular2Button)
+                        .addGap(54, 54, 54))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jugador1Label)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(puntosJugador1))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jugador2Label)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(puntosJugador2)))
-                                        .addGap(28, 28, 28))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(puntosFinal1)
-                                        .addGap(91, 91, 91)))
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(sede1Label)
+                                .addGap(101, 101, 101)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sede2Label))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(104, 104, 104)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(puntosJugador4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(puntosJugador3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGap(102, 102, 102)
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(sede3Label))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGap(112, 112, 112)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(puntosFinal1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(puntosFinal2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(final1Label)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(jLabel4)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(final2Label)))))
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
+                                        .addGap(148, 148, 148)
                                         .addComponent(simular3Button)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(puntosFinal2))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(102, 102, 102)
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(sede3Label))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(112, 112, 112)
-                                    .addComponent(final1Label)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel4)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(final2Label))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jugador3Label)
-                                .addGap(47, 47, 47))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jugador4Label)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(36, 36, 36))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(volverButton)
+                                                .addGap(165, 165, 165))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jugador1Label)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(puntosJugador1))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(jLabel2)
+                                                            .addComponent(jugador2Label))
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(puntosJugador2)))
+                                                .addGap(132, 132, 132)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(puntosJugador4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(puntosJugador3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addGap(11, 11, 11)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jugador3Label)
+                                    .addComponent(jugador4Label)
+                                    .addComponent(jLabel3))
+                                .addGap(47, 47, 47)))
+                        .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,11 +292,11 @@ public class Cuadro4 extends javax.swing.JFrame {
                     .addComponent(jugador3Label)
                     .addComponent(puntosJugador1)
                     .addComponent(puntosJugador3))
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(21, 21, 21)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jugador2Label)
                     .addComponent(jugador4Label)
@@ -304,28 +312,24 @@ public class Cuadro4 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(simular1Button)
                     .addComponent(simular2Button))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sede3Label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(final1Label)
-                            .addComponent(jLabel4)
-                            .addComponent(final2Label))
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(puntosFinal1)
-                            .addComponent(puntosFinal2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(simular3Button)
-                        .addGap(16, 16, 16)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(final1Label)
+                    .addComponent(jLabel4)
+                    .addComponent(final2Label))
+                .addGap(6, 6, 6)
+                .addComponent(simular3Button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(puntosFinal1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(puntosFinal2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(volverButton)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -385,6 +389,10 @@ public class Cuadro4 extends javax.swing.JFrame {
         puntosFinal2.setText(String.valueOf(torneo.getPartidasList().get(2).getPuntos2()));
         torneo.setFinalizado(true);
     }//GEN-LAST:event_simular3ButtonMouseClicked
+
+    private void simular3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simular3ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_simular3ButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel final1Label;

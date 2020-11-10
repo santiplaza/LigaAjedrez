@@ -51,6 +51,7 @@ public class DatosResponsable extends javax.swing.JFrame {
 
         jLabel4.setText("Fecha nacimiento:");
 
+        nombreLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         nombreLabel.setText("jLabel5");
 
         Volver.setText("Volver");
@@ -60,8 +61,10 @@ public class DatosResponsable extends javax.swing.JFrame {
             }
         });
 
+        apellidosLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         apellidosLabel.setText("jLabel5");
 
+        fechaNacimientoLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         fechaNacimientoLabel.setText("jLabel5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

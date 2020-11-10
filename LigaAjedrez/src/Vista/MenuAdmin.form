@@ -47,12 +47,12 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="administrarTorneosButton" min="-2" pref="224" max="-2" attributes="0"/>
-                  <Component id="RegistrarDatosPartida" min="-2" max="-2" attributes="0"/>
-                  <Component id="realizarReserva" min="-2" pref="224" max="-2" attributes="0"/>
-                  <Component id="AsignarSede" alignment="1" min="-2" pref="224" max="-2" attributes="0"/>
-                  <Component id="AdministrarClubs" alignment="1" min="-2" pref="224" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="administrarTorneosButton" pref="224" max="32767" attributes="0"/>
+                  <Component id="realizarReserva" pref="224" max="32767" attributes="0"/>
+                  <Component id="AsignarSede" alignment="1" pref="224" max="32767" attributes="0"/>
+                  <Component id="AdministrarClubs" alignment="1" pref="224" max="32767" attributes="0"/>
+                  <Component id="RegistrarDatosPartida" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
           </Group>

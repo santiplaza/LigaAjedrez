@@ -102,6 +102,11 @@ public class IntroduceResultados extends javax.swing.JFrame {
                 añadirButtonMouseClicked(evt);
             }
         });
+        añadirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                añadirButtonActionPerformed(evt);
+            }
+        });
 
         volverButton.setText("Volver");
         volverButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,10 +123,12 @@ public class IntroduceResultados extends javax.swing.JFrame {
             }
         });
 
+        jugador1Label.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jugador1Label.setText("jLabel1");
 
         vsLabel.setText("vs.");
 
+        jugador2Label.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jugador2Label.setText("jLabel2");
 
         puntuacionLabel.setText("Introduce puntuación:");
@@ -160,9 +167,9 @@ public class IntroduceResultados extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(volverButton)
-                                .addGap(18, 18, 18)
+                                .addGap(40, 40, 40)
                                 .addComponent(cuadroButton)
-                                .addGap(29, 29, 29)
+                                .addGap(27, 27, 27)
                                 .addComponent(añadirButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(torneosJList, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +203,7 @@ public class IntroduceResultados extends javax.swing.JFrame {
                                                 .addComponent(finalizadoLabel)
                                                 .addGap(41, 41, 41)
                                                 .addComponent(eliminadoLabel)))))))
-                        .addContainerGap(189, Short.MAX_VALUE))
+                        .addContainerGap(183, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(actualizarLabel)
@@ -357,6 +364,10 @@ public class IntroduceResultados extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_cuadroButtonMouseClicked
+
+    private void añadirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_añadirButtonActionPerformed
 
     public void setUsuario(Usuario usu)
     {

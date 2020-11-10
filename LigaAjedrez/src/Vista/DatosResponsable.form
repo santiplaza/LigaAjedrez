@@ -111,6 +111,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="nombreLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
     </Component>
@@ -124,11 +127,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="apellidosLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="fechaNacimientoLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
     </Component>
