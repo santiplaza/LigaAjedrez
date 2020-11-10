@@ -28,7 +28,9 @@ public class AdministracionClubs extends javax.swing.JFrame {
         this.gestionarEntrenadores = new GestionarEntrenador(this);
         this.gestionarGerente = new GestionarGerente(this);
         this.añadirGerente = new AñadirGerente(this);
+        this.añadirEntrenador = new AñadirEntrenador(this);
         añadirGerenteButton.setVisible(false);
+        añadirEntrenadorButton.setVisible(false);
     }
 
     /**
@@ -47,7 +49,7 @@ public class AdministracionClubs extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         verJugadoresButton = new javax.swing.JButton();
-        VerEntrenadores = new javax.swing.JButton();
+        verEntrenadorButton = new javax.swing.JButton();
         JListClubes = new java.awt.List();
         nombreClub = new javax.swing.JLabel();
         nombreGerente = new javax.swing.JLabel();
@@ -55,6 +57,7 @@ public class AdministracionClubs extends javax.swing.JFrame {
         entrenador2Club = new javax.swing.JLabel();
         gestionarGerenteButton = new javax.swing.JButton();
         añadirGerenteButton = new javax.swing.JButton();
+        añadirEntrenadorButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,10 +90,10 @@ public class AdministracionClubs extends javax.swing.JFrame {
             }
         });
 
-        VerEntrenadores.setText("Gestionar entrenador");
-        VerEntrenadores.addMouseListener(new java.awt.event.MouseAdapter() {
+        verEntrenadorButton.setText("Gestionar entrenador");
+        verEntrenadorButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                VerEntrenadoresMouseClicked(evt);
+                verEntrenadorButtonMouseClicked(evt);
             }
         });
 
@@ -111,6 +114,13 @@ public class AdministracionClubs extends javax.swing.JFrame {
         añadirGerenteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 añadirGerenteButtonMouseClicked(evt);
+            }
+        });
+
+        añadirEntrenadorButton.setText("Añadir entrenador");
+        añadirEntrenadorButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                añadirEntrenadorButtonMouseClicked(evt);
             }
         });
 
@@ -142,7 +152,7 @@ public class AdministracionClubs extends javax.swing.JFrame {
                                     .addComponent(nombreClub)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(nombreGerente)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)
@@ -154,12 +164,15 @@ public class AdministracionClubs extends javax.swing.JFrame {
                                 .addComponent(entrenador1Club))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(110, 110, 110)
-                                .addComponent(entrenador2Club))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(verJugadoresButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(VerEntrenadores)))))
+                                .addComponent(entrenador2Club))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(verJugadoresButton)
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(añadirEntrenadorButton)
+                            .addComponent(verEntrenadorButton))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,13 +199,15 @@ public class AdministracionClubs extends javax.swing.JFrame {
                             .addComponent(entrenador1Club)
                             .addComponent(añadirGerenteButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(entrenador2Club)
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(verJugadoresButton)
-                            .addComponent(VerEntrenadores)))
-                    .addComponent(JListClubes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addComponent(entrenador2Club))
+                    .addComponent(JListClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(verJugadoresButton)
+                    .addComponent(verEntrenadorButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(añadirEntrenadorButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(Volver)
                 .addGap(22, 22, 22))
         );
@@ -214,13 +229,13 @@ public class AdministracionClubs extends javax.swing.JFrame {
         crearClub.setVisible(true);
     }//GEN-LAST:event_CrearClubMouseClicked
 
-    private void VerEntrenadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEntrenadoresMouseClicked
+    private void verEntrenadorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verEntrenadorButtonMouseClicked
         this.setVisible(false);
         gestionarEntrenadores.setClub(clubSelected);
         gestionarEntrenadores.setClubes(clubesList);
         gestionarEntrenadores.setLabels();
         gestionarEntrenadores.setVisible(true);
-    }//GEN-LAST:event_VerEntrenadoresMouseClicked
+    }//GEN-LAST:event_verEntrenadorButtonMouseClicked
 
     private void verJugadoresButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verJugadoresButtonMouseClicked
         this.setVisible(false);
@@ -237,11 +252,30 @@ public class AdministracionClubs extends javax.swing.JFrame {
         nombreGerente.setText(clubSelected.getGerente().getNombre() + " " + clubSelected.getGerente().getApellidos());
         entrenador1Club.setText(clubSelected.getEntrenador().getNombre() + " " + clubSelected.getEntrenador().getApellidos());
         clubSelected.getGerente().verDatos();
+        
         if(!clubSelected.getGerente().isExiste())
         {
             gestionarGerenteButton.setVisible(false);
             añadirGerenteButton.setVisible(true);
         }
+        else
+        {
+            gestionarGerenteButton.setVisible(true);
+            añadirGerenteButton.setVisible(false);
+        }
+            
+        
+        if(!clubSelected.getEntrenador().isExiste())
+        {
+            verEntrenadorButton.setVisible(false);
+            añadirEntrenadorButton.setVisible(true);
+        }
+        else
+        {
+            verEntrenadorButton.setVisible(true);
+            añadirEntrenadorButton.setVisible(false);
+        }
+            
     }//GEN-LAST:event_JListClubesItemStateChanged
 
     private void gestionarGerenteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarGerenteButtonMouseClicked
@@ -262,6 +296,12 @@ public class AdministracionClubs extends javax.swing.JFrame {
         añadirGerente.setClubes(clubesList);
         añadirGerente.setClub(clubSelected);
     }//GEN-LAST:event_añadirGerenteButtonMouseClicked
+
+    private void añadirEntrenadorButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_añadirEntrenadorButtonMouseClicked
+        añadirEntrenador.setVisible(true);
+        añadirEntrenador.setClubes(clubesList);
+        añadirEntrenador.setClub(clubSelected);
+    }//GEN-LAST:event_añadirEntrenadorButtonMouseClicked
 
     public void setUsuario(Usuario usu)
     {
@@ -298,8 +338,8 @@ public class AdministracionClubs extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CrearClub;
     private java.awt.List JListClubes;
-    private javax.swing.JButton VerEntrenadores;
     private javax.swing.JButton Volver;
+    private javax.swing.JButton añadirEntrenadorButton;
     private javax.swing.JButton añadirGerenteButton;
     private javax.swing.JLabel entrenador1Club;
     private javax.swing.JLabel entrenador2Club;
@@ -310,6 +350,7 @@ public class AdministracionClubs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel nombreClub;
     private javax.swing.JLabel nombreGerente;
+    private javax.swing.JButton verEntrenadorButton;
     private javax.swing.JButton verJugadoresButton;
     // End of variables declaration//GEN-END:variables
     private MenuAdmin menuAdmin;
@@ -318,8 +359,10 @@ public class AdministracionClubs extends javax.swing.JFrame {
     private CrearClub crearClub;
     private GestionarGerente gestionarGerente;
     private AñadirGerente añadirGerente;
+    private AñadirEntrenador añadirEntrenador;
     private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
     private ArrayList<Club> clubesList = new ArrayList<Club>();
     private Usuario usuario;
     private Club clubSelected;
+    
 }

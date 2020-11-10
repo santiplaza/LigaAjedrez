@@ -154,13 +154,14 @@ public class GestionarEntrenador extends javax.swing.JFrame {
 
     private void eliminarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarButtonMouseClicked
         
-        /*for(int i = 0; i < clubesList.size(); i++)
+        for(int i = 0; i < clubesList.size(); i++)
         {
-            if(clubesList.get(i).getNombre().equals(clubSelectedString))
+            if(clubesList.get(i).getNombre().equals(equiposJList.getSelectedItem()))
             {
-                clubesList.get(i).getEntrenador().getClub().get(clubSelectedInt);
+                clubesList.get(i).getEntrenador().borrarDatos();
             }
-        }*/
+        }
+        setLabels();
     }//GEN-LAST:event_eliminarButtonMouseClicked
 
     public void setClubes(ArrayList<Club> clubes)
@@ -175,6 +176,13 @@ public class GestionarEntrenador extends javax.swing.JFrame {
     
     public void setLabels()
     {
+        
+        if(!club.getEntrenador().isExiste())
+        {
+            jLabel4.setVisible(false);
+            equiposJList.setVisible(false);
+            eliminarButton.setVisible(false);
+        }
         
         equiposJList.removeAll();
         for (int i = 0; i < club.getEntrenador().getClub().size(); i++)

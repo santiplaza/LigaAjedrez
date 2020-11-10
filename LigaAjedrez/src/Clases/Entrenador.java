@@ -73,6 +73,15 @@ public class Entrenador extends Persona{
         this.reservas = reservas;
     }
     
+    public void setDatos(String _nombre, String _apellidos, String _club, Date _fecha, boolean _existe)
+    {
+        this.setNombre(_nombre);
+        this.setApellidos(_apellidos);
+        this.setFechaNacimiento(_fecha);
+        club.add(_club);
+        existe = true;
+    }
+    
     
     
 }
