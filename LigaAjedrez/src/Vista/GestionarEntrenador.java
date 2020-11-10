@@ -177,6 +177,13 @@ public class GestionarEntrenador extends javax.swing.JFrame {
     public void setLabels()
     {
         
+        if(!club.getEntrenador().isExiste())
+        {
+            jLabel4.setVisible(false);
+            equiposJList.setVisible(false);
+            eliminarButton.setVisible(false);
+        }
+        
         equiposJList.removeAll();
         for (int i = 0; i < club.getEntrenador().getClub().size(); i++)
         {
