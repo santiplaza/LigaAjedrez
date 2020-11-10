@@ -279,6 +279,22 @@ public class MenuAdmin extends javax.swing.JFrame {
         federacionesList = federaciones;
     }
     
+    public void setELO()
+    {
+        usuario.setELO(1000);
+        
+        for(int i = 0; i < torneosList.size(); i++)
+            for(int j = 0; j < torneosList.get(i).getPartidasList().size(); j++)
+            {
+                if(torneosList.get(i).getPartidasList().get(j).ganador() == usuario)
+                {
+                    usuario.addELO(10);
+                }
+                else if((torneosList.get(i).getPartidasList().get(j).getJugador1() == usuario) ||(torneosList.get(i).getPartidasList().get(j).getJugador2() == usuario))
+                    usuario.addELO(-5);
+            }
+    }
+    
     public void setLabels ()
     {
         usuarioLabel.setText(usuario.getId());

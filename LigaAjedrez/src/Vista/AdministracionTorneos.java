@@ -179,6 +179,7 @@ public class AdministracionTorneos extends javax.swing.JFrame {
     private void volverButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volverButtonMouseClicked
        this.setVisible(false);
        menuAdmin.setTorneos(torneosList);
+       menuAdmin.setELO();
        menuAdmin.setVisible(true);
     }//GEN-LAST:event_volverButtonMouseClicked
 

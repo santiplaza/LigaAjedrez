@@ -74,6 +74,8 @@ public class DatosUsuario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         pagoLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        eloLabel = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel1.setText("Nombre:");
@@ -139,6 +141,12 @@ public class DatosUsuario extends javax.swing.JFrame {
         pagoLabel.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         pagoLabel.setText("jLabel6");
 
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jLabel6.setText("ELO:");
+
+        eloLabel.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
+        eloLabel.setText("jLabel7");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,9 +179,15 @@ public class DatosUsuario extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(nombreUsuario)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel0)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel0)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(jLabel6)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(categoriaUsuario)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(eloLabel)
+                                            .addComponent(categoriaUsuario))
                                         .addGap(19, 19, 19))))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
@@ -215,13 +229,18 @@ public class DatosUsuario extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(nombreUsuario)))
+                            .addComponent(nombreUsuario))
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel0)
-                            .addComponent(categoriaUsuario))))
-                .addGap(18, 18, 18)
+                            .addComponent(categoriaUsuario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(eloLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -320,6 +339,7 @@ public class DatosUsuario extends javax.swing.JFrame {
         apellidosUsuario.setText(usuario.getApellidos());
         fechaUsuario.setText(ConvertirFecha(usuario.getFechaNacimiento()));
         categoriaUsuario.setText(usuario.getCategoria());
+        eloLabel.setText(String.valueOf(usuario.getELO()));
         if(!usuario.isMoroso())
             pagoLabel.setText(ConvertirFecha(usuario.getUltimoPago()));
         else
@@ -363,6 +383,7 @@ public class DatosUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel apellidosUsuario;
     private javax.swing.JLabel categoriaUsuario;
     private javax.swing.JButton datosResponsableButton;
+    private javax.swing.JLabel eloLabel;
     private javax.swing.JLabel fechaUsuario;
     private java.awt.List historicoJList;
     private javax.swing.JLabel jLabel0;
@@ -371,6 +392,7 @@ public class DatosUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel nombreUsuario;
     private javax.swing.JPasswordField nuevaContraseñaField;
     private javax.swing.JLabel nuevaContraseñaLabel;

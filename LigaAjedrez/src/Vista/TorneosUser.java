@@ -189,6 +189,7 @@ public class TorneosUser extends javax.swing.JFrame {
     private void volverButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volverButtonMouseClicked
         this.setVisible(false);
         menuUsuario.setTorneos(torneosList);
+        menuUsuario.setELO();
         menuUsuario.setVisible(true);
     }//GEN-LAST:event_volverButtonMouseClicked
 

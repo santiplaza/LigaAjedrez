@@ -283,12 +283,14 @@ public class IntroduceResultados extends javax.swing.JFrame {
         if (admin)
         {
             menuAdmin.setTorneos(torneosList);
+            menuAdmin.setELO();
             menuAdmin.setVisible(true);  
         }
             
         else
         {
             menuUsuario.setTorneos(torneosList);
+            menuUsuario.setELO();
             menuUsuario.setVisible(true);
         }
         setLabels();

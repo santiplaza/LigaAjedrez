@@ -20,6 +20,7 @@ public class Usuario extends Persona{
     private String categoria;
     private String club;
     private Date ultimoPago;
+    private int ELO;
     private ArrayList<String> historico;
     private boolean moroso;
     private boolean admin;
@@ -33,6 +34,7 @@ public class Usuario extends Persona{
         this.categoria = new String ("default");
         this.club = new String ("Mi club ");
         this.ultimoPago = new Date(119,1,7);
+        this.ELO = 1000;
         historico = new ArrayList<String>();
         this.moroso = false;
         this.admin = true;
@@ -47,6 +49,7 @@ public class Usuario extends Persona{
         this.password = new String (_password);
         this.club = new String (_club);
         this.ultimoPago = new Date(120,0,15);;
+        this.ELO = 1000;
         historico = new ArrayList<String>();
         this.moroso = false;
         this.admin = _admin;
@@ -137,7 +140,16 @@ public class Usuario extends Persona{
     public void setResponsable(Persona responsable) {
         this.responsable = responsable;
     }
+
+    public int getELO() {
+        return ELO;
+    }
+
+    public void setELO(int ELO) {
+        this.ELO = ELO;
+    }
     
-    
-    
+    public void addELO(int _ELO) {
+        this.ELO = ELO + _ELO;
+    }
 }
