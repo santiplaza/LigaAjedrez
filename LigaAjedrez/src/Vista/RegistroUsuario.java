@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import Clases.Usuario;
+import Clases.Club;
+import Clases.Federacion;
+import Clases.Torneo;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -21,9 +25,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     public RegistroUsuario(Inicio inicio) {
         initComponents();
         this.inicio = inicio;
-        this.elegirClub = new ElegirClub(this,inicio);
-        this.datosList = inicio.getDatos();
-        
+        this.elegirClub = new ElegirClub(this,inicio);     
     }
 
     /**
@@ -49,6 +51,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         ContraseñaUser = new javax.swing.JPasswordField();
         ContraseñaUser2 = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +81,8 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
         jLabel6.setText("Repite contraseña:");
 
+        jLabel7.setText("Introduce la fecha como formato DD/MM/AAAA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,12 +93,20 @@ public class RegistroUsuario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addComponent(Cancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Registrarse))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(71, 71, 71))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ApellidosUser)
                                     .addGroup(layout.createSequentialGroup()
@@ -101,17 +114,13 @@ public class RegistroUsuario extends javax.swing.JFrame {
                                         .addGap(23, 23, 23))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(FechaNacimientoUser, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Cancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Registrarse)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(IdUser, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(99, 99, 99))
@@ -124,6 +133,10 @@ public class RegistroUsuario extends javax.swing.JFrame {
                                     .addComponent(ContraseñaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ContraseñaUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +149,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ApellidosUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(FechaNacimientoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,12 +186,19 @@ public class RegistroUsuario extends javax.swing.JFrame {
         
         if(pass.equals(pass2))
         {
-            datosList.add(new Usuario(IdUser.getText(), pass, NombreUser.getText(), ApellidosUser.getText(), new Date(99,3,12),"Senior", "Valencia CF", false));
-            elegirClub.setDatos(datosList);
-            elegirClub.setUserOnline(datosList.size()-1);
-            elegirClub.setLabels();
-            this.setVisible(false);
-            elegirClub.setVisible(true);
+            if(ComprobarFormatoFecha(FechaNacimientoUser.getText()))
+            {
+                usuario = new Usuario(IdUser.getText(), pass, NombreUser.getText(), ApellidosUser.getText(), ConvertirFecha(FechaNacimientoUser.getText()), "null", false);
+                elegirClub.setTorneos(torneosList);
+                elegirClub.setUsuario(usuario);
+                elegirClub.setFederaciones(federacionesList);
+                elegirClub.setLabels();
+                elegirClub.Iniciar();
+                elegirClub.setUsuariosList(usersList);
+                this.setVisible(false);
+                elegirClub.setVisible(true);
+            }
+            
         }   
         else
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
@@ -188,6 +210,57 @@ public class RegistroUsuario extends javax.swing.JFrame {
         inicio.setVisible(true);
     }//GEN-LAST:event_CancelarMouseClicked
 
+    public Date ConvertirFecha(String _fecha)
+    {
+        int dia = Integer.parseInt(_fecha.substring(0, 2));
+        int mes = Integer.parseInt(_fecha.substring(3, 5))-1;
+        int anyo = Integer.parseInt(_fecha.substring(6, 10))-1900;      
+        Date fecha = new Date(anyo,mes,dia); 
+        
+        return fecha;
+    }
+    
+    public boolean ComprobarFormatoFecha(String fecha)
+    {
+        boolean correcto = false;
+        
+        if(fecha.substring(2, 3).equals("/") && fecha.substring(5, 6).equals("/") && fecha.length() == 10)
+        {
+            int dia = Integer.parseInt(fecha.substring(0, 2));
+            int mes = Integer.parseInt(fecha.substring(3, 5))-1;
+            int anyo = Integer.parseInt(fecha.substring(6, 10))-1900;
+            
+            if((1 <= dia && 31 >= dia) && (0 <= mes && 11 >= mes))
+                 correcto = true;
+            else
+                JOptionPane.showMessageDialog(null, "Introduce bien la fecha por favor");
+        }
+            
+        else
+            JOptionPane.showMessageDialog(null, "Introduce bien la fecha por favor");
+        
+        return correcto;
+    }
+    
+    public void setUsuario(Usuario usu)
+    {
+        usuario = usu;
+    }
+    
+    public void setTorneos(ArrayList<Torneo> torneos)
+    {
+        torneosList = torneos;
+    }
+    
+    public void setFederaciones(ArrayList<Federacion> federaciones)
+    {
+        federacionesList = federaciones;
+    }
+    
+    public void setUsuariosList(ArrayList<Usuario> list)
+    {
+        usersList = list;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ApellidosUser;
     private javax.swing.JButton Cancelar;
@@ -203,10 +276,14 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
     private Inicio inicio;
     private ElegirClub elegirClub;
-    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
+    private Usuario usuario;
+    private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
+    private ArrayList<Usuario> usersList = new ArrayList<Usuario>();
+    private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();
     private char[] arrayC;
     private String pass, pass2;
 }

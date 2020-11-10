@@ -5,6 +5,13 @@
  */
 package Vista;
 
+import Clases.Usuario;
+import Clases.Club;
+import Clases.Federacion;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author enrique
@@ -14,16 +21,28 @@ public class DatosClub extends javax.swing.JFrame {
     /**
      * Creates new form DatosClub
      */
-    public DatosClub(MenuUsuario menuUsuario) {
+    public DatosClub(MenuUsuario menuUsuario, Inicio inicio) {
         initComponents();
         this.menuUsuario = menuUsuario;
+        this.inicio = inicio;
         this.admin = false;
+        federacionesJList.setVisible(false);
+        listaCambiarClubes.setVisible(false);
+        confirmarButton.setVisible(false);
+        nominaLabel.setVisible(false);
+        nomina.setVisible(false);
+        irpfLabel.setVisible(false);
+        irpf.setVisible(false);
     }
     
-    public DatosClub(MenuAdmin menuAdmin) {
+    public DatosClub(MenuAdmin menuAdmin, Inicio inicio) {
         initComponents();
         this.menuAdmin = menuAdmin;
+        this.inicio = inicio;
         this.admin = true;
+        federacionesJList.setVisible(false);
+        listaCambiarClubes.setVisible(false);
+        confirmarButton.setVisible(false);
     }
 
     /**
@@ -38,11 +57,19 @@ public class DatosClub extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cambiarClubButton = new javax.swing.JButton();
         Volver = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        nombreClub = new javax.swing.JLabel();
+        gerenteClub = new javax.swing.JLabel();
+        entrenador1Club = new javax.swing.JLabel();
+        listaCambiarClubes = new java.awt.List();
+        confirmarButton = new javax.swing.JButton();
+        bajaButton = new javax.swing.JButton();
+        nominaLabel = new javax.swing.JLabel();
+        irpfLabel = new javax.swing.JLabel();
+        nomina = new javax.swing.JLabel();
+        irpf = new javax.swing.JLabel();
+        federacionesJList = new java.awt.List();
 
         jLabel1.setText("Nombre del club:");
 
@@ -50,12 +77,10 @@ public class DatosClub extends javax.swing.JFrame {
 
         jLabel3.setText("Entrenador 1:");
 
-        jLabel4.setText("Entrenador 2:");
-
-        jButton1.setText("Darse de baja");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        cambiarClubButton.setText("Cambiar de club");
+        cambiarClubButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cambiarClubButtonMouseClicked(evt);
             }
         });
 
@@ -66,6 +91,40 @@ public class DatosClub extends javax.swing.JFrame {
             }
         });
 
+        nombreClub.setText("jLabel5");
+
+        gerenteClub.setText("jLabel5");
+
+        entrenador1Club.setText("jLabel5");
+
+        confirmarButton.setText("Confirmar cambio");
+        confirmarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmarButtonMouseClicked(evt);
+            }
+        });
+
+        bajaButton.setText("Darse de baja");
+        bajaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bajaButtonMouseClicked(evt);
+            }
+        });
+
+        nominaLabel.setText("Nómina:");
+
+        irpfLabel.setText("IRPF:");
+
+        nomina.setText("jLabel7");
+
+        irpf.setText("jLabel8");
+
+        federacionesJList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                federacionesJListItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,35 +132,85 @@ public class DatosClub extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(Volver)))
-                .addContainerGap(240, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bajaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Volver)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(entrenador1Club))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreClub)
+                                    .addComponent(gerenteClub)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nominaLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(nomina))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(irpfLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(irpf)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cambiarClubButton)
+                        .addGap(170, 170, 170))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(federacionesJList, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(listaCambiarClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(27, 27, 27))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(confirmarButton)
+                .addGap(183, 183, 183))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(bajaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreClub)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(listaCambiarClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(gerenteClub))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(nominaLabel)
+                                    .addComponent(nomina))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(irpfLabel)
+                                    .addComponent(irpf))
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(entrenador1Club)))
+                            .addComponent(federacionesJList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(cambiarClubButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addComponent(confirmarButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(Volver)
                 .addGap(21, 21, 21))
         );
@@ -112,24 +221,177 @@ public class DatosClub extends javax.swing.JFrame {
     private void VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VolverMouseClicked
         this.setVisible(false);
         if (admin)
+        {
+            menuAdmin.setClub(club);
+            menuAdmin.setUsuario(usuario);
             menuAdmin.setVisible(true);
+        }
         else
+        {
+            menuUsuario.setClub(club);
+            menuUsuario.setUsuario(usuario);
             menuUsuario.setVisible(true);
+        }
+            
     }//GEN-LAST:event_VolverMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void cambiarClubButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cambiarClubButtonMouseClicked
+        federacionesJList.removeAll();
+        for(int i = 0; i < federacionesList.size(); i++)
+        {
+            federacionesJList.add(federacionesList.get(i).getProvincia(), i);
+        }
+        
+        federacionesJList.setVisible(true);
+        listaCambiarClubes.setVisible(true);
+        confirmarButton.setVisible(true);
+        cambiarClubButton.setVisible(false);
+    }//GEN-LAST:event_cambiarClubButtonMouseClicked
 
+    private void bajaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bajaButtonMouseClicked
+       
+       if(usuario.isMoroso() == true)
+       {
+           JOptionPane.showMessageDialog(null, "Usted es moroso. Su última fecha de pago fue el " + ConvertirFecha(usuario.getUltimoPago()));
+       }
+       else
+       {
+            int confirmado = JOptionPane.showConfirmDialog(null, "Realmente desea darse de baja? Se borrarán todos sus datos. No tiene pagos pendientes. Última fecha de pago registrada: " + ConvertirFecha(usuario.getUltimoPago()), "Confirmar baja", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (JOptionPane.OK_OPTION == confirmado)
+             {
+                 club.getJugadoresList().remove(usuario);
+                 
+                 if(admin)
+                 {
+                      inicio.setFederaciones(federacionesList);
+                      inicio.setUsuario(usuario);
+                      menuAdmin.setVisible(false);
+                 }
+                  else
+                 {
+                      inicio.setFederaciones(federacionesList);
+                      inicio.setUsuario(usuario);
+                      menuUsuario.setVisible(false);
+                 }
+                 inicio.eliminarUsuario(usuario);
+                 inicio.setLabels();
+                 this.setVisible(false);
+                 inicio.setVisible(true);
+             }
+       }
+       
+    }//GEN-LAST:event_bajaButtonMouseClicked
+
+    private void confirmarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarButtonMouseClicked
+        
+        clubAlterno = federacionesList.get(federacionesJList.getSelectedIndex()).getClubesList().get(listaCambiarClubes.getSelectedIndex());
+        
+        if(clubAlterno.getNombre().equals("Default"))
+        {
+            clubAlterno.getJugadoresList().add(usuario);
+            usuario.setClub(clubAlterno.getNombre());
+            usuario.getHistorico().add(clubAlterno.getNombre());
+            setClub(clubAlterno);
+        }
+        else
+        {
+            club.getJugadoresList().remove(usuario);
+            clubAlterno.getJugadoresList().add(usuario);
+            usuario.setClub(clubAlterno.getNombre());
+            usuario.getHistorico().add(clubAlterno.getNombre());
+            setClub(clubAlterno);
+        }
+        setLabels();
+    }//GEN-LAST:event_confirmarButtonMouseClicked
+
+    private void federacionesJListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_federacionesJListItemStateChanged
+        listaCambiarClubes.removeAll();
+        for(int i = 0; i < federacionesList.get(federacionesJList.getSelectedIndex()).getClubesList().size(); i++)
+        {
+            listaCambiarClubes.add(federacionesList.get(federacionesJList.getSelectedIndex()).getClubesList().get(i).getNombre(), i);      
+        }
+    }//GEN-LAST:event_federacionesJListItemStateChanged
+
+    public void setUsuario(Usuario usu)
+    {
+        usuario = usu;
+    }
+    
+    public void setClub(Club _club)
+    {
+        club = _club;    
+    }
+    
+    public void setFederaciones(ArrayList<Federacion> federaciones)
+    {
+        federacionesList = federaciones;
+    }
+    
+    public void setLabels ()
+    {
+        if(club.getNombre().equals("Default"))
+        {
+            nombreClub.setText(usuario.getClub());
+            gerenteClub.setText(" ");
+            nomina.setText(" ");
+            irpf.setText(" ");
+            entrenador1Club.setText(" ");
+            listaCambiarClubes.setVisible(false);
+            confirmarButton.setVisible(false);
+            cambiarClubButton.setVisible(true);
+            federacionesJList.setVisible(false);
+        }
+        else
+        {
+            nombreClub.setText(usuario.getClub());
+            gerenteClub.setText(club.getGerente().getNombre() + " " + club.getGerente().getApellidos());
+            nomina.setText(String.valueOf(club.getGerente().getNomina()));
+            irpf.setText(String.valueOf(club.getGerente().getIrpf()));
+            entrenador1Club.setText(club.getEntrenador().getNombre() + " " + club.getEntrenador().getApellidos());
+            listaCambiarClubes.setVisible(false);
+            confirmarButton.setVisible(false);
+            cambiarClubButton.setVisible(true);
+            federacionesJList.setVisible(false);
+        }
+        
+    }
+    
+    public String ConvertirFecha(Date fecha)
+    {
+        String dia = new String("");
+        String mes = new String("");
+        String anyo = new String("");
+        
+        dia = Integer.toString(fecha.getDate());
+        mes = Integer.toString(fecha.getMonth() + 1);
+        anyo = Integer.toString(fecha.getYear() + 1900);
+        
+        return dia+"/"+mes+"/"+anyo;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Volver;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bajaButton;
+    private javax.swing.JButton cambiarClubButton;
+    private javax.swing.JButton confirmarButton;
+    private javax.swing.JLabel entrenador1Club;
+    private java.awt.List federacionesJList;
+    private javax.swing.JLabel gerenteClub;
+    private javax.swing.JLabel irpf;
+    private javax.swing.JLabel irpfLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private java.awt.List listaCambiarClubes;
+    private javax.swing.JLabel nombreClub;
+    private javax.swing.JLabel nomina;
+    private javax.swing.JLabel nominaLabel;
     // End of variables declaration//GEN-END:variables
     private MenuUsuario menuUsuario;
+    private Inicio inicio;
     private MenuAdmin menuAdmin;
     private boolean admin = false;
+    private Usuario usuario;
+    private Club club;
+    private Club clubAlterno;
+    private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
 }

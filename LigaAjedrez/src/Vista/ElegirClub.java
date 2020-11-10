@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import Clases.Usuario;
+import Clases.Club;
+import Clases.Federacion;
+import Clases.Torneo;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +25,6 @@ public class ElegirClub extends javax.swing.JFrame {
         this.inicio = inicio;
         this.registroUsuario = registroUsuario;
         this.menuUsuario = inicio.getMenuUsuario();
-        this.datosList = inicio.getDatos();
-        System.out.println(datosList.size()-1 + "elegirClub constructor");
     }
 
     /**
@@ -35,31 +37,20 @@ public class ElegirClub extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         FinalizarRegistro = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
+        JListClubes = new java.awt.List();
+        federacionesJList = new java.awt.List();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("¿A que club quieres unirte?");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
         FinalizarRegistro.setText("Finalizar registro");
         FinalizarRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 FinalizarRegistroMouseClicked(evt);
-            }
-        });
-        FinalizarRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FinalizarRegistroActionPerformed(evt);
             }
         });
 
@@ -70,33 +61,49 @@ public class ElegirClub extends javax.swing.JFrame {
             }
         });
 
+        federacionesJList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                federacionesJListItemStateChanged(evt);
+            }
+        });
+
+        jLabel2.setText("Federación");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(Cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                 .addComponent(FinalizarRegistro)
                 .addGap(15, 15, 15))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(49, 49, 49))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(federacionesJList, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JListClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(federacionesJList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JListClubes, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FinalizarRegistro)
                     .addComponent(Cancelar))
@@ -106,51 +113,85 @@ public class ElegirClub extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FinalizarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarRegistroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FinalizarRegistroActionPerformed
-
     private void CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarMouseClicked
         this.setVisible(false);
         registroUsuario.setVisible(true);
     }//GEN-LAST:event_CancelarMouseClicked
 
     private void FinalizarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarRegistroMouseClicked
-          //menuUsuario = new MenuUsuario(inicio).setVisible(true);
-          System.out.println(userOnline + "User Online");
-            menuUsuario.setDatos(datosList);
-            menuUsuario.setUserOnline(userOnline);
-            System.out.println(datosList.size()-1);
-            System.out.println(userOnline);
+            club = federacionesList.get(federacionesJList.getSelectedIndex()).getClubesList().get(JListClubes.getSelectedIndex());
+            club.getJugadoresList().add(usuario);
+            usuario.setClub(club.getNombre());
+            usuario.getHistorico().clear();
+            usuario.getHistorico().add(club.getNombre());
+            usersList.add(usuario);
+            
+            inicio.setUsuariosList(usersList);
+            
+            menuUsuario.setClub(club);
+            menuUsuario.setUsuario(usuario);
+            menuUsuario.setFederaciones(federacionesList);
+            menuUsuario.setTorneos(torneosList);
             menuUsuario.setLabels();
             menuUsuario.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_FinalizarRegistroMouseClicked
+
+    private void federacionesJListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_federacionesJListItemStateChanged
+        JListClubes.removeAll();
+        for(int i = 0; i < federacionesList.get(federacionesJList.getSelectedIndex()).getClubesList().size(); i++)
+        {
+            JListClubes.add(federacionesList.get(federacionesJList.getSelectedIndex()).getClubesList().get(i).getNombre(), i);      
+        }
+    }//GEN-LAST:event_federacionesJListItemStateChanged
     
-    public void setDatos(ArrayList<Usuario> datos)
+    public void Iniciar()
     {
-        datosList = datos;    
+        federacionesJList.removeAll();
+        for(int i = 0; i < federacionesList.size(); i++)
+        {
+            federacionesJList.add(federacionesList.get(i).getProvincia(), i);
+        }      
+    }
+    public void setUsuario(Usuario usu)
+    {
+        usuario = usu; 
     }
     
-    public void setUserOnline (int i)
+    public void setTorneos(ArrayList<Torneo> torneos)
     {
-        userOnline = i;
+        torneosList = torneos;
     }
+    
+    public void setFederaciones(ArrayList<Federacion> federaciones)
+    {
+        federacionesList = federaciones;
+    }
+    
     public void setLabels ()
     {
   
+    }
+    
+    public void setUsuariosList(ArrayList<Usuario> list)
+    {
+        usersList = list;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton FinalizarRegistro;
+    private java.awt.List JListClubes;
+    private java.awt.List federacionesJList;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
     private RegistroUsuario registroUsuario;
     private Inicio inicio;
     private MenuUsuario menuUsuario;
-    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
-    private int userOnline;
+    private Usuario usuario;
+    private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
+    private ArrayList<Usuario> usersList = new ArrayList<Usuario>();
+    private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();
+    private Club club;
 }

@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Clases.Usuario;
+import java.util.Date;
+
 /**
  *
  * @author enrique
@@ -32,21 +35,23 @@ public class DatosResponsable extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        nombreLabel = new javax.swing.JLabel();
         Volver = new javax.swing.JButton();
+        apellidosLabel = new javax.swing.JLabel();
+        fechaNacimientoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Datos del responsable:");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Nombre:");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Apellidos:");
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Fecha nacimiento:");
 
-        jLabel5.setText("jLabel5");
+        nombreLabel.setText("jLabel5");
 
         Volver.setText("Volver");
         Volver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -54,6 +59,10 @@ public class DatosResponsable extends javax.swing.JFrame {
                 VolverMouseClicked(evt);
             }
         });
+
+        apellidosLabel.setText("jLabel5");
+
+        fechaNacimientoLabel.setText("jLabel5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,15 +74,23 @@ public class DatosResponsable extends javax.swing.JFrame {
                         .addGap(108, 108, 108)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(Volver)))
+                        .addComponent(Volver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(apellidosLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fechaNacimientoLabel)))))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -81,15 +98,19 @@ public class DatosResponsable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(nombreLabel))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(apellidosLabel))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(fechaNacimientoLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(Volver)
                 .addGap(19, 19, 19))
         );
@@ -101,14 +122,41 @@ public class DatosResponsable extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_VolverMouseClicked
 
+     public void setUsuario(Usuario usu)
+    {
+        usuario = usu;
+    }
+    
+    public void setLabels()
+    {
+        nombreLabel.setText(usuario.getResponsable().getNombre());
+        apellidosLabel.setText(usuario.getResponsable().getApellidos());
+        fechaNacimientoLabel.setText(ConvertirFecha(usuario.getResponsable().getFechaNacimiento()));
+    }
+    
+    public String ConvertirFecha(Date fecha)
+    {
+        String dia = new String("");
+        String mes = new String("");
+        String anyo = new String("");
+        
+        dia = Integer.toString(fecha.getDate());
+        mes = Integer.toString(fecha.getMonth() + 1);
+        anyo = Integer.toString(fecha.getYear() + 1900);
+        
+        return dia+"/"+mes+"/"+anyo;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Volver;
+    private javax.swing.JLabel apellidosLabel;
+    private javax.swing.JLabel fechaNacimientoLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel nombreLabel;
     // End of variables declaration//GEN-END:variables
     private DatosUsuario datosUsuario;
+    private Usuario usuario;
 }

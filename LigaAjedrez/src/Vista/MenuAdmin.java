@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import Clases.Usuario;
+import Clases.Club;
+import Clases.Federacion;
+import Clases.Torneo;
 import java.util.ArrayList;
 
 /**
@@ -19,12 +23,13 @@ public class MenuAdmin extends javax.swing.JFrame {
     public MenuAdmin(Inicio inicio) {
         initComponents();
         this.inicio = inicio;
-        this.datosClub = new DatosClub(this);
         this.introduceResultados = new IntroduceResultados(this);
         this.reservaEntrenamiento = new ReservaEntrenamiento(this);
         this.datosUsuario = new DatosUsuario(this);      
         this.administracionClubs = new AdministracionClubs(this);
-      
+        this.datosClub = new DatosClub(this, inicio);
+        this.administracionTorneos = new AdministracionTorneos(this);
+        this.asignarSedes = new AsignarSedes(this);
     }
 
     /**
@@ -46,21 +51,19 @@ public class MenuAdmin extends javax.swing.JFrame {
         AdministrarClubs = new javax.swing.JButton();
         usuarioLabel = new javax.swing.JLabel();
         MisDatos = new javax.swing.JButton();
+        administrarTorneosButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        realizarReserva.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         realizarReserva.setText("Realizar reserva");
         realizarReserva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 realizarReservaMouseClicked(evt);
             }
         });
-        realizarReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                realizarReservaActionPerformed(evt);
-            }
-        });
 
+        RegistrarDatosPartida.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         RegistrarDatosPartida.setText("Registrar datos partida");
         RegistrarDatosPartida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -68,16 +71,18 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        AsignarSede.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         AsignarSede.setText("Asignar sede a partida");
-        AsignarSede.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AsignarSedeActionPerformed(evt);
+        AsignarSede.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AsignarSedeMouseClicked(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("Bienvenido,");
 
+        FinalizarSesion.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         FinalizarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CerrarSesion.png"))); // NOI18N
         FinalizarSesion.setText("Finalizar sesión");
         FinalizarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,6 +91,7 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        MiClub.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         MiClub.setText("Mi club");
         MiClub.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,6 +101,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ReyGold.png"))); // NOI18N
 
+        AdministrarClubs.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         AdministrarClubs.setText("Administrar clubs");
         AdministrarClubs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,13 +109,22 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
-        usuarioLabel.setFont(new java.awt.Font("Lucida Grande", 3, 13)); // NOI18N
+        usuarioLabel.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
         usuarioLabel.setText("jLabel2");
 
+        MisDatos.setFont(new java.awt.Font("Lucida Grande", 1, 15)); // NOI18N
         MisDatos.setText("Mis datos");
         MisDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MisDatosMouseClicked(evt);
+            }
+        });
+
+        administrarTorneosButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        administrarTorneosButton.setText("Administrar torneos");
+        administrarTorneosButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                administrarTorneosButtonMouseClicked(evt);
             }
         });
 
@@ -124,109 +140,149 @@ public class MenuAdmin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(FinalizarSesion)
-                        .addGap(18, 18, 18))
+                        .addComponent(usuarioLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(MisDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MiClub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(AdministrarClubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(RegistrarDatosPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                            .addComponent(realizarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                            .addComponent(AsignarSede, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-                        .addGap(0, 74, Short.MAX_VALUE))))
+                            .addComponent(MiClub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MisDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addComponent(FinalizarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(administrarTorneosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RegistrarDatosPartida)
+                    .addComponent(realizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AsignarSede, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AdministrarClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(112, 112, 112))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(usuarioLabel)))
-                    .addComponent(FinalizarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MiClub))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(usuarioLabel))))
+                        .addGap(26, 26, 26)
+                        .addComponent(MiClub, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(realizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MisDatos))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RegistrarDatosPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(FinalizarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AsignarSede, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AdministrarClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MisDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(realizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(RegistrarDatosPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(AsignarSede, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(AdministrarClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(administrarTorneosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AsignarSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AsignarSedeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AsignarSedeActionPerformed
-
     private void realizarReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_realizarReservaMouseClicked
         this.setVisible(false);
+        reservaEntrenamiento.setClub(club);
+        reservaEntrenamiento.setUsuario(usuario);
+        reservaEntrenamiento.setLabels();
         reservaEntrenamiento.setVisible(true);
     }//GEN-LAST:event_realizarReservaMouseClicked
 
     private void RegistrarDatosPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarDatosPartidaMouseClicked
         this.setVisible(false);
+        introduceResultados.setTorneos(torneosList);
+        introduceResultados.setUsuario(usuario);
+        introduceResultados.Iniciar();
+        introduceResultados.setLabels();
         introduceResultados.setVisible(true);
     }//GEN-LAST:event_RegistrarDatosPartidaMouseClicked
 
     private void FinalizarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarSesionMouseClicked
         this.setVisible(false);
+        inicio.setUsuario(usuario);
+        inicio.setFederaciones(federacionesList);
+        inicio.setTorneos(torneosList);
+        inicio.setLabels();
         inicio.setVisible(true);
     }//GEN-LAST:event_FinalizarSesionMouseClicked
 
     private void MiClubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiClubMouseClicked
-        //this.setVisible(false);
+        datosClub.setFederaciones(federacionesList);
+        datosClub.setClub(club);
+        datosClub.setUsuario(usuario);
+        datosClub.setLabels();
         datosClub.setVisible(true);
     }//GEN-LAST:event_MiClubMouseClicked
 
-    private void realizarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarReservaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_realizarReservaActionPerformed
-
     private void AdministrarClubsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdministrarClubsMouseClicked
         this.setVisible(false);
+        administracionClubs.setFederaciones(federacionesList);
+        administracionClubs.setUsuario(usuario);
+        administracionClubs.setLabels();
         administracionClubs.setVisible(true);
     }//GEN-LAST:event_AdministrarClubsMouseClicked
 
     private void MisDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MisDatosMouseClicked
-        datosUsuario.setDatos(datosList);
-        datosUsuario.setUserOnline(userOnline);
+        datosUsuario.setUsuario(usuario);
         datosUsuario.setLabels();
         datosUsuario.setVisible(true);
     }//GEN-LAST:event_MisDatosMouseClicked
 
-    public void setDatos(ArrayList<Usuario> datos)
+    private void administrarTorneosButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_administrarTorneosButtonMouseClicked
+        this.setVisible(false);
+        administracionTorneos.setClub(club);
+        administracionTorneos.setTorneos(torneosList);
+        administracionTorneos.setFederaciones(federacionesList);
+        administracionTorneos.setUsuario(usuario);
+        administracionTorneos.setLabels();
+        administracionTorneos.setVisible(true);
+    }//GEN-LAST:event_administrarTorneosButtonMouseClicked
+
+    private void AsignarSedeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AsignarSedeMouseClicked
+        this.setVisible(false);
+        asignarSedes.setTorneos(torneosList);
+        asignarSedes.setLabels();
+        asignarSedes.setVisible(true);
+    }//GEN-LAST:event_AsignarSedeMouseClicked
+
+    public void setUsuario(Usuario usu)
     {
-        datosList.addAll(datos);    
+        usuario = usu;
     }
     
-    public void setUserOnline (int i)
+    public void setClub(Club _club)
     {
-        userOnline = i;
+        club = _club;    
     }
+    
+    public void setTorneos(ArrayList<Torneo> torneos)
+    {
+        torneosList = torneos;
+    }
+    
+    public void setFederaciones(ArrayList<Federacion> federaciones)
+    {
+        federacionesList = federaciones;
+    }
+    
     public void setLabels ()
     {
-        usuarioLabel.setText(datosList.get(userOnline).getId());
+        usuarioLabel.setText(usuario.getId());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdministrarClubs;
@@ -235,6 +291,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton MiClub;
     private javax.swing.JButton MisDatos;
     private javax.swing.JButton RegistrarDatosPartida;
+    private javax.swing.JButton administrarTorneosButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton realizarReserva;
@@ -246,6 +303,10 @@ public class MenuAdmin extends javax.swing.JFrame {
     private IntroduceResultados introduceResultados;
     private DatosUsuario datosUsuario;
     private AdministracionClubs administracionClubs;
-    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
-    private int userOnline;
+    private AdministracionTorneos administracionTorneos;
+    private AsignarSedes asignarSedes;
+    private Usuario usuario;
+    private Club club;
+    private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();
+    private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
 }

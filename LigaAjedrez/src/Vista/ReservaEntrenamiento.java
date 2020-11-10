@@ -5,6 +5,14 @@
  */
 package Vista;
 
+import Clases.Club;
+import Clases.Reserva;
+import Clases.Usuario;
+import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author santi
@@ -16,14 +24,38 @@ public class ReservaEntrenamiento extends javax.swing.JFrame {
      */
     public ReservaEntrenamiento(MenuUsuario menuUsuario) {
         initComponents();
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        dateChooser.setFont(new java.awt.Font("Tahoma", 1,10));
+        dateChooser.setBounds(140, 20, 190, 30);
+        dateChooser.getDateEditor().setEnabled(false);
+        Date FechaIngreso = new Date();
+        dateChooser.setDate(FechaIngreso);
+        dateChooser.setMinSelectableDate(FechaIngreso);
+        //dateChooser.setMaxSelectableDate(new Date(FechaIngreso.getDay()+5, FechaIngreso.getMonth()+2, FechaIngreso.getYear()+1));
+        
+        
+        panelCalendario.add(dateChooser);
         this.menuUsuario = menuUsuario;
         this.admin = false;
+        exitoLabel.setVisible(false);
     }
     
     public ReservaEntrenamiento(MenuAdmin menuAdmin) {
         initComponents();
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        dateChooser.setFont(new java.awt.Font("Tahoma", 1,10));
+        dateChooser.setBounds(140, 20, 190, 30);
+        dateChooser.getDateEditor().setEnabled(false);
+        Date FechaIngreso = new Date();
+        dateChooser.setDate(FechaIngreso);
+        dateChooser.setMinSelectableDate(FechaIngreso);
+        //dateChooser.setMaxSelectableDate(new Date(FechaIngreso.getDay()+5, FechaIngreso.getMonth()+2, FechaIngreso.getYear()+1));
+        
+        
+        panelCalendario.add(dateChooser);
         this.menuAdmin = menuAdmin;
         this.admin = true;
+        exitoLabel.setVisible(false);
     }
 
     /**
@@ -35,113 +67,267 @@ public class ReservaEntrenamiento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        cancelarButton = new javax.swing.JButton();
+        reservarButton = new javax.swing.JButton();
+        nombreEntrenadorLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        panelCalendario = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        fechaLabel = new javax.swing.JLabel();
+        horasJList = new java.awt.List();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        Cancelar = new javax.swing.JButton();
-        Reservar = new javax.swing.JButton();
+        verHorasButton = new javax.swing.JButton();
+        exitoLabel = new javax.swing.JLabel();
+        reservasJList = new java.awt.List();
+        jLabel5 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Día");
+        jLabel1.setText("Fecha seleccionada es:");
 
-        jLabel2.setText("Hora");
-
-        jTextField1.setText("jTextField1");
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        Cancelar.setText("Cancelar");
-        Cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelarButton.setText("Cancelar");
+        cancelarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CancelarMouseClicked(evt);
+                cancelarButtonMouseClicked(evt);
             }
         });
 
-        Reservar.setText("Reservar");
-        Reservar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReservarActionPerformed(evt);
+        reservarButton.setText("Reservar");
+        reservarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reservarButtonMouseClicked(evt);
             }
         });
+
+        nombreEntrenadorLabel.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        nombreEntrenadorLabel.setText("jLabel3");
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel3.setText("Entrenador:");
+
+        panelCalendario.setLayout(new java.awt.BorderLayout());
+
+        jLabel4.setText("Seleccione la fecha:");
+
+        fechaLabel.setText("jLabel5");
+
+        horasJList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                horasJListItemStateChanged(evt);
+            }
+        });
+
+        jLabel2.setText("Hora seleccionada:");
+
+        verHorasButton.setText("Ver horas disponibles");
+        verHorasButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verHorasButtonMouseClicked(evt);
+            }
+        });
+
+        exitoLabel.setText("Reservado con éxito!");
+
+        jLabel5.setText("Tus reservas:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombreEntrenadorLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cancelarButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(reservarButton)
+                        .addGap(81, 81, 81))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fechaLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(exitoLabel)
+                .addGap(64, 64, 64))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(verHorasButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(38, Short.MAX_VALUE))
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Cancelar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Reservar)
-                        .addGap(58, 58, 58))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(horasJList, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reservasJList, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(jLabel3)
+                    .addComponent(nombreEntrenadorLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(panelCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(verHorasButton))
+                            .addComponent(reservasJList, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fechaLabel)))
+                    .addComponent(horasJList, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(exitoLabel)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cancelar)
-                    .addComponent(Reservar))
+                    .addComponent(cancelarButton)
+                    .addComponent(reservarButton))
                 .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReservarActionPerformed
+    private void cancelarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarButtonMouseClicked
         this.setVisible(false);
         if (admin)
             menuAdmin.setVisible(true);
         else
             menuUsuario.setVisible(true);
-    }//GEN-LAST:event_ReservarActionPerformed
+    }//GEN-LAST:event_cancelarButtonMouseClicked
 
-    private void CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarMouseClicked
-        this.setVisible(false);
-        if (admin)
-            menuAdmin.setVisible(true);
-        else
-            menuUsuario.setVisible(true);
-    }//GEN-LAST:event_CancelarMouseClicked
+    private void reservarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservarButtonMouseClicked
+        String fecha = sdf.format(dateChooser.getDate());    
+        String hora = new String(horasJList.getSelectedItem());
+        
+        club.getEntrenador().getReservas().add(new Reserva(fecha, hora, usuario));
+        reservasJList.add(fecha + " " + hora);
+        exitoLabel.setVisible(true);
+    }//GEN-LAST:event_reservarButtonMouseClicked
 
+    private void horasJListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_horasJListItemStateChanged
+       
+        fechaLabel.setText(sdf.format(dateChooser.getDate()) + " " + horasJList.getSelectedItem()) ;
+    }//GEN-LAST:event_horasJListItemStateChanged
+
+    private void verHorasButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verHorasButtonMouseClicked
+        exitoLabel.setVisible(false);
+        String fecha = sdf.format(dateChooser.getDate());    
+        
+        horasJList.removeAll();
+        horasJList.add("10:00", 0);
+        horasJList.add("12:00", 1);
+        horasJList.add("16:00", 2);
+        horasJList.add("18:00", 3);
+        for (int i = 0; i < club.getEntrenador().getReservas().size(); i++)
+        {
+            if(club.getEntrenador().getReservas().get(i).getFecha().equals(fecha))
+            {
+                if(club.getEntrenador().getReservas().get(i).getHora().equals("10:00"))
+                    horasJList.remove("10:00");
+                else if(club.getEntrenador().getReservas().get(i).getHora().equals("12:00"))
+                    horasJList.remove("12:00");
+                else if(club.getEntrenador().getReservas().get(i).getHora().equals("16:00"))
+                     horasJList.remove("16:00");
+                else if(club.getEntrenador().getReservas().get(i).getHora().equals("18:00"))
+                     horasJList.remove("18:00");
+            }
+        }
+        
+    }//GEN-LAST:event_verHorasButtonMouseClicked
+
+    public void setUsuario(Usuario usu)
+    {
+        usuario = usu;
+    }
+    
+    public void setClub(Club _club)
+    {
+        club = _club;    
+    }
+    
+    public void setLabels()
+    {
+        exitoLabel.setVisible(false);
+        nombreEntrenadorLabel.setText(club.getEntrenador().getNombre() + " " + club.getEntrenador().getApellidos() );
+        fechaLabel.setText("");
+        
+        horasJList.removeAll();
+        
+        reservasJList.removeAll();
+        for (int i = 0; i < club.getEntrenador().getReservas().size(); i++)
+        {
+            if(club.getEntrenador().getReservas().get(i).getUsuario() == usuario)
+                reservasJList.add(club.getEntrenador().getReservas().get(i).getFecha() + " " + club.getEntrenador().getReservas().get(i).getHora());
+        }
+        
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Cancelar;
-    private javax.swing.JButton Reservar;
+    private javax.swing.JButton cancelarButton;
+    private javax.swing.JLabel exitoLabel;
+    private javax.swing.JLabel fechaLabel;
+    private java.awt.List horasJList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel nombreEntrenadorLabel;
+    private javax.swing.JPanel panelCalendario;
+    private javax.swing.JButton reservarButton;
+    private java.awt.List reservasJList;
+    private javax.swing.JButton verHorasButton;
     // End of variables declaration//GEN-END:variables
     private MenuUsuario menuUsuario;
     private MenuAdmin menuAdmin;
+    private Usuario usuario;
+    private Club club;
+    private com.toedter.calendar.JDateChooser dateChooser;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private boolean admin = false;
+    private boolean fechaSeleccionada = false;
+    private boolean horaSeleccionada = false;
 }

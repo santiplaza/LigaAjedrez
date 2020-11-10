@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import Clases.Usuario;
+import Clases.Club;
+import Clases.Federacion;
+import Clases.Torneo;
 import java.util.ArrayList;
 
 /**
@@ -19,12 +23,12 @@ public class MenuUsuario extends javax.swing.JFrame {
     public MenuUsuario(Inicio inicio) {
         initComponents();
         this.inicio = inicio;
-        this.datosClub = new DatosClub(this);
+        this.datosClub = new DatosClub(this, inicio);
         this.introduceResultados = new IntroduceResultados(this);
         this.reservaEntrenamiento = new ReservaEntrenamiento(this);
         this.datosUsuario = new DatosUsuario(this);
-  
-        this.datosList= inicio.getDatos();
+        this.torneosUser = new TorneosUser(this);
+            
     }
 
     /**
@@ -44,6 +48,7 @@ public class MenuUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         MisDatos = new javax.swing.JButton();
         usuarioLabel = new javax.swing.JLabel();
+        torneosButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,11 +75,6 @@ public class MenuUsuario extends javax.swing.JFrame {
                 FinalizarSesionMouseClicked(evt);
             }
         });
-        FinalizarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FinalizarSesionActionPerformed(evt);
-            }
-        });
 
         jLabel1.setBackground(new java.awt.Color(255, 102, 102));
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -84,11 +84,6 @@ public class MenuUsuario extends javax.swing.JFrame {
         MiClub.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MiClubMouseClicked(evt);
-            }
-        });
-        MiClub.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MiClubActionPerformed(evt);
             }
         });
 
@@ -104,6 +99,14 @@ public class MenuUsuario extends javax.swing.JFrame {
         usuarioLabel.setFont(new java.awt.Font("Lucida Grande", 3, 13)); // NOI18N
         usuarioLabel.setText("jLabel3");
 
+        torneosButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        torneosButton.setText("Torneos");
+        torneosButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                torneosButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,6 +114,9 @@ public class MenuUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(torneosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(5, 5, 5)
@@ -122,13 +128,11 @@ public class MenuUsuario extends javax.swing.JFrame {
                         .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(MiClub)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(MisDatos)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(IntroducirResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ReservaEntrenamiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(MisDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,10 +144,12 @@ public class MenuUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(usuarioLabel))
                 .addGap(18, 18, 18)
-                .addComponent(MiClub)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(MisDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MiClub)
+                    .addComponent(MisDatos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(torneosButton, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ReservaEntrenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(IntroducirResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,52 +161,74 @@ public class MenuUsuario extends javax.swing.JFrame {
 
     private void ReservaEntrenamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReservaEntrenamientoMouseClicked
         this.setVisible(false);
+        reservaEntrenamiento.setClub(club);
+        reservaEntrenamiento.setUsuario(usuario);
+        reservaEntrenamiento.setLabels();
         reservaEntrenamiento.setVisible(true);
     }//GEN-LAST:event_ReservaEntrenamientoMouseClicked
 
     private void IntroducirResultadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IntroducirResultadosMouseClicked
         this.setVisible(false);
+        introduceResultados.setTorneos(torneosList);
+        introduceResultados.setUsuario(usuario);
+        introduceResultados.Iniciar();
+        introduceResultados.setLabels();
         introduceResultados.setVisible(true);
     }//GEN-LAST:event_IntroducirResultadosMouseClicked
 
     private void FinalizarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarSesionMouseClicked
         this.setVisible(false);
-        inicio.setDatos(datosList);
+        inicio.setFederaciones(federacionesList);
+        inicio.setLabels();
         inicio.setVisible(true);
     }//GEN-LAST:event_FinalizarSesionMouseClicked
 
     private void MiClubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiClubMouseClicked
-        //this.setVisible(false);
+        datosClub.setFederaciones(federacionesList);
+        datosClub.setClub(club);
+        datosClub.setUsuario(usuario);
+        datosClub.setLabels();
         datosClub.setVisible(true);
     }//GEN-LAST:event_MiClubMouseClicked
 
-    private void FinalizarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarSesionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FinalizarSesionActionPerformed
-
-    private void MiClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiClubActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MiClubActionPerformed
-
     private void MisDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MisDatosMouseClicked
-        datosUsuario.setDatos(datosList);
-        datosUsuario.setUserOnline(userOnline);
+        datosUsuario.setUsuario(usuario);
         datosUsuario.setLabels();
         datosUsuario.setVisible(true);
     }//GEN-LAST:event_MisDatosMouseClicked
+
+    private void torneosButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_torneosButtonMouseClicked
+        this.setVisible(false);
+        torneosUser.setClub(club);
+        torneosUser.setTorneos(torneosList);
+        torneosUser.setUsuario(usuario);
+        torneosUser.setLabels();
+        torneosUser.setVisible(true);
+    }//GEN-LAST:event_torneosButtonMouseClicked
     
-    public void setDatos(ArrayList<Usuario> datos)
+    public void setUsuario(Usuario usu)
     {
-        datosList = datos;    
+        usuario = usu;
     }
     
-    public void setUserOnline (int i)
+    public void setFederaciones(ArrayList<Federacion> federaciones)
     {
-        userOnline = i;
+        federacionesList = federaciones;
     }
+    
+    public void setClub(Club _club)
+    {
+        club = _club;    
+    }
+    
+    public void setTorneos(ArrayList<Torneo> torneos)
+    {
+        torneosList = torneos;
+    }
+    
     public void setLabels ()
     {
-        usuarioLabel.setText(datosList.get(userOnline).getId());
+        usuarioLabel.setText(usuario.getId());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -211,6 +239,7 @@ public class MenuUsuario extends javax.swing.JFrame {
     private javax.swing.JButton ReservaEntrenamiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton torneosButton;
     private javax.swing.JLabel usuarioLabel;
     // End of variables declaration//GEN-END:variables
     private Inicio inicio;
@@ -218,6 +247,10 @@ public class MenuUsuario extends javax.swing.JFrame {
     private ReservaEntrenamiento reservaEntrenamiento;
     private IntroduceResultados introduceResultados;
     private DatosUsuario datosUsuario;
-    private ArrayList<Usuario> datosList = new ArrayList<Usuario>();
-    private int userOnline;
+    private TorneosUser torneosUser;
+    private Usuario usuario;
+    private Club club;
+    private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();
+    private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
+    
 }

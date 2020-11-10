@@ -5,6 +5,12 @@
  */
 package Vista;
 
+import Clases.Usuario;
+import Clases.Club;
+import Clases.Federacion;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author enrique
@@ -19,7 +25,10 @@ public class AdministracionClubs extends javax.swing.JFrame {
         this.menuAdmin = menuAdmin;
         this.crearClub = new CrearClub(this);
         this.verJugadores = new VerJugadoresClub(this);
-        this.verEntrenadores = new VerEntrenadoresClub(this);
+        this.gestionarEntrenadores = new GestionarEntrenador(this);
+        this.gestionarGerente = new GestionarGerente(this);
+        this.añadirGerente = new AñadirGerente(this);
+        añadirGerenteButton.setVisible(false);
     }
 
     /**
@@ -33,16 +42,19 @@ public class AdministracionClubs extends javax.swing.JFrame {
 
         Volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         CrearClub = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        ModificarDatosClub = new javax.swing.JButton();
-        VerJugadores = new javax.swing.JButton();
+        verJugadoresButton = new javax.swing.JButton();
         VerEntrenadores = new javax.swing.JButton();
+        JListClubes = new java.awt.List();
+        nombreClub = new javax.swing.JLabel();
+        nombreGerente = new javax.swing.JLabel();
+        entrenador1Club = new javax.swing.JLabel();
+        entrenador2Club = new javax.swing.JLabel();
+        gestionarGerenteButton = new javax.swing.JButton();
+        añadirGerenteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,13 +67,6 @@ public class AdministracionClubs extends javax.swing.JFrame {
 
         jLabel1.setText("Lista de clubes:");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
         CrearClub.setText("Crear club");
         CrearClub.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -73,28 +78,39 @@ public class AdministracionClubs extends javax.swing.JFrame {
 
         jLabel3.setText("Gerente:");
 
-        jLabel4.setText("Entrenador 1:");
+        jLabel4.setText("Entrenador:");
 
-        jLabel5.setText("Entrenador 2:");
-
-        ModificarDatosClub.setText("Modificar datos club");
-        ModificarDatosClub.addMouseListener(new java.awt.event.MouseAdapter() {
+        verJugadoresButton.setText("Ver jugadores");
+        verJugadoresButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ModificarDatosClubMouseClicked(evt);
+                verJugadoresButtonMouseClicked(evt);
             }
         });
 
-        VerJugadores.setText("Ver jugadores");
-        VerJugadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                VerJugadoresMouseClicked(evt);
-            }
-        });
-
-        VerEntrenadores.setText("Ver entrenadores");
+        VerEntrenadores.setText("Gestionar entrenador");
         VerEntrenadores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 VerEntrenadoresMouseClicked(evt);
+            }
+        });
+
+        JListClubes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JListClubesItemStateChanged(evt);
+            }
+        });
+
+        gestionarGerenteButton.setText("Gestionar gerente");
+        gestionarGerenteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gestionarGerenteButtonMouseClicked(evt);
+            }
+        });
+
+        añadirGerenteButton.setText("Añadir gerente");
+        añadirGerenteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                añadirGerenteButtonMouseClicked(evt);
             }
         });
 
@@ -103,31 +119,49 @@ public class AdministracionClubs extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CrearClub))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CrearClub))
+                            .addComponent(Volver)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(JListClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)))
-                            .addComponent(Volver))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jLabel3))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreClub)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(nombreGerente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(añadirGerenteButton))
+                                            .addComponent(gestionarGerenteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(26, 26, 26)
+                                .addComponent(entrenador1Club))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(entrenador2Club)))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(ModificarDatosClub)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(VerJugadores)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(VerEntrenadores))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(verJugadoresButton)
+                .addGap(18, 18, 18)
+                .addComponent(VerEntrenadores)
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,25 +170,30 @@ public class AdministracionClubs extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CrearClub, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(nombreClub))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(nombreGerente)
+                            .addComponent(gestionarGerenteButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(entrenador1Club)
+                            .addComponent(añadirGerenteButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(entrenador2Club))
+                    .addComponent(JListClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ModificarDatosClub)
-                    .addComponent(VerJugadores)
+                    .addComponent(verJugadoresButton)
                     .addComponent(VerEntrenadores))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(Volver)
                 .addGap(22, 22, 22))
         );
@@ -164,44 +203,124 @@ public class AdministracionClubs extends javax.swing.JFrame {
 
     private void VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VolverMouseClicked
         this.setVisible(false);
+        menuAdmin.setFederaciones(federacionesList);
+        menuAdmin.setUsuario(usuario);
         menuAdmin.setVisible(true);
     }//GEN-LAST:event_VolverMouseClicked
 
     private void CrearClubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CrearClubMouseClicked
         this.setVisible(false);
+        crearClub.setFederaciones(federacionesList);
+        crearClub.setLabels();
         crearClub.setVisible(true);
     }//GEN-LAST:event_CrearClubMouseClicked
 
     private void VerEntrenadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEntrenadoresMouseClicked
         this.setVisible(false);
-        verEntrenadores.setVisible(true);
+        gestionarEntrenadores.setClub(clubSelected);
+        gestionarEntrenadores.setClubes(clubesList);
+        gestionarEntrenadores.setLabels();
+        gestionarEntrenadores.setVisible(true);
     }//GEN-LAST:event_VerEntrenadoresMouseClicked
 
-    private void VerJugadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerJugadoresMouseClicked
+    private void verJugadoresButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verJugadoresButtonMouseClicked
         this.setVisible(false);
+        verJugadores.setClubes(clubesList);
+        verJugadores.setUsuario(usuario);
+        verJugadores.setClub(clubSelected);
+        verJugadores.setLabels();
         verJugadores.setVisible(true);
-    }//GEN-LAST:event_VerJugadoresMouseClicked
+    }//GEN-LAST:event_verJugadoresButtonMouseClicked
 
-    private void ModificarDatosClubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModificarDatosClubMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ModificarDatosClubMouseClicked
+    private void JListClubesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JListClubesItemStateChanged
+        clubSelected = clubesList.get(JListClubes.getSelectedIndex());
+        nombreClub.setText(clubSelected.getNombre());
+        nombreGerente.setText(clubSelected.getGerente().getNombre() + " " + clubSelected.getGerente().getApellidos());
+        entrenador1Club.setText(clubSelected.getEntrenador().getNombre() + " " + clubSelected.getEntrenador().getApellidos());
+        clubSelected.getGerente().verDatos();
+        if(!clubSelected.getGerente().isExiste())
+        {
+            gestionarGerenteButton.setVisible(false);
+            añadirGerenteButton.setVisible(true);
+        }
+    }//GEN-LAST:event_JListClubesItemStateChanged
 
+    private void gestionarGerenteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarGerenteButtonMouseClicked
+        if (clubSelected == null)
+            JOptionPane.showMessageDialog(null, "Selecciona un club");
+        else
+        {
+            this.setVisible(false);
+            gestionarGerente.setClubes(clubesList);
+            gestionarGerente.setClub(clubSelected);
+            gestionarGerente.setLabels();
+            gestionarGerente.setVisible(true);
+        }
+    }//GEN-LAST:event_gestionarGerenteButtonMouseClicked
+
+    private void añadirGerenteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_añadirGerenteButtonMouseClicked
+        añadirGerente.setVisible(true);
+        añadirGerente.setClubes(clubesList);
+        añadirGerente.setClub(clubSelected);
+    }//GEN-LAST:event_añadirGerenteButtonMouseClicked
+
+    public void setUsuario(Usuario usu)
+    {
+        usuario = usu;
+    }
+    
+    public void setFederaciones(ArrayList<Federacion> federaciones)
+    {
+        federacionesList = federaciones;
+    }
+    
+    public void setClubes(ArrayList<Club> clubes)
+    {
+        clubesList = clubes;    
+    }
+    
+    public void setLabels ()
+    {
+        clubesList.clear();
+        for(int i = 0; i < federacionesList.size(); i++)
+            for(int j = 0; j < federacionesList.get(i).getClubesList().size(); j++)
+            {
+                clubesList.add(federacionesList.get(i).getClubesList().get(j));
+            }
+        
+        JListClubes.removeAll();
+        for (int i = 0; i < clubesList.size(); i++)
+        {
+            JListClubes.add(clubesList.get(i).getNombre(), i);
+        }
+        gestionarGerenteButton.setVisible(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CrearClub;
-    private javax.swing.JButton ModificarDatosClub;
+    private java.awt.List JListClubes;
     private javax.swing.JButton VerEntrenadores;
-    private javax.swing.JButton VerJugadores;
     private javax.swing.JButton Volver;
+    private javax.swing.JButton añadirGerenteButton;
+    private javax.swing.JLabel entrenador1Club;
+    private javax.swing.JLabel entrenador2Club;
+    private javax.swing.JButton gestionarGerenteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nombreClub;
+    private javax.swing.JLabel nombreGerente;
+    private javax.swing.JButton verJugadoresButton;
     // End of variables declaration//GEN-END:variables
     private MenuAdmin menuAdmin;
-    private VerEntrenadoresClub verEntrenadores;
+    private GestionarEntrenador gestionarEntrenadores;
     private VerJugadoresClub verJugadores;
     private CrearClub crearClub;
+    private GestionarGerente gestionarGerente;
+    private AñadirGerente añadirGerente;
+    private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
+    private ArrayList<Club> clubesList = new ArrayList<Club>();
+    private Usuario usuario;
+    private Club clubSelected;
 }
