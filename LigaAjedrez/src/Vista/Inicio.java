@@ -36,7 +36,11 @@ public class Inicio extends javax.swing.JFrame {
         usersList.add(new Usuario("e", "e", "Alberto", "Gregori Bou", new Date(94,7,23), "SA Leganes", false));
         usersList.add(new Usuario("pablomi99", "pablo", "Pablo", "Arnau Soler", new Date(94,7,23), "Valladolid", false));
         
-        usersList.get(0).setMoroso(true);
+        usersList.get(0).setUltimoPago(new Date(119,6,22));
+        usersList.get(1).setUltimoPago(new Date(120,9,21));
+        usersList.get(2).setUltimoPago(new Date(119,11,6));
+        usersList.get(3).setUltimoPago(new Date(118,10,3));
+        usersList.get(4).setUltimoPago(new Date(120,4,8));
         
         this.federacionesList.add(new Federacion("Valencia"));
         this.federacionesList.add(new Federacion("Andalucia"));
@@ -62,6 +66,11 @@ public class Inicio extends javax.swing.JFrame {
                     if (federacionesList.get(x).getClubesList().get(i).getNombre().equals(usersList.get(j).getClub()))
                     {
                         federacionesList.get(x).getClubesList().get(i).addJugador(usersList.get(j));
+                    }
+                    
+                    if(usersList.get(j).getUltimoPago().compareTo(new Date(120,0,1)) == -1)
+                    {
+                        usersList.get(j).setMoroso(true);
                     }
                 }
         }
