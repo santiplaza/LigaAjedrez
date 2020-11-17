@@ -18,7 +18,7 @@ public class Entrenador extends Persona{
     private ArrayList<Reserva> reservas;
     private boolean existe;
     
-    Entrenador()
+    public Entrenador()
     {
         super();
         
@@ -28,7 +28,7 @@ public class Entrenador extends Persona{
         club.add(new String("default"));
     }
     
-    Entrenador(String _nombre, String _apellidos, String _club)
+    public Entrenador(String _nombre, String _apellidos, String _club)
     {
         super(_nombre,_apellidos,new Date(99,4,1));
         

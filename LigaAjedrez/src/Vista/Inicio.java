@@ -10,6 +10,8 @@ import Clases.Club;
 import Clases.Federacion;
 import Clases.Torneo;
 import DAO.LigaAjedrezDAO;
+import Fachada.FachadaUsuario;
+import Factoria.FactoriaPersonas;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -28,10 +30,15 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         
         ligaAjedrezDAO = new LigaAjedrezDAO();
+        fachada = new FachadaUsuario();
+        fac = new FactoriaPersonas();
         
         System.out.println("Conexion:" + ligaAjedrezDAO.isConnected());
   
-        usersList.add(new Usuario("miguel99", "hola", "Miguel", "Ferrer Fornali", new Date(99,3,12), "Malaga", false));
+        usuario = (Usuario)fac.CrearPersona(FactoriaPersonas.tipoPersona.USUARIO);
+        usuario.setDatos("miguel99", "hola", "Miguel", "Ferrer Fornali", new Date(99,3,12), "Malaga", false);
+            
+        usersList.add(usuario);
         usersList.add(new Usuario("enrike1221", "12345", "Enrique", "Juan Sempere", new Date(99,4,1),"Valencia CF", true));
         usersList.add(new Usuario("a", "a", "Javier", "Salcedo Roman", new Date(117,7,23), "Silos CF", true));   
         usersList.add(new Usuario("igrebou", "hola", "Ivan", "Gregori Bou", new Date(94,7,23), "Sevilla FC", false));
@@ -239,7 +246,7 @@ public class Inicio extends javax.swing.JFrame {
             this.setVisible(false);
             menuUsuario.setFederaciones(federacionesList);
             menuUsuario.setTorneos(torneosList);
-            menuUsuario.setUsuario(usuario);
+            menuUsuario.setUsuario(fachada.getUsuario());
             menuUsuario.setClub(club);
             menuUsuario.setLabels();
             menuUsuario.setVisible(true);
@@ -249,7 +256,7 @@ public class Inicio extends javax.swing.JFrame {
             this.setVisible(false);
             menuAdmin.setFederaciones(federacionesList);
             menuAdmin.setTorneos(torneosList);
-            menuAdmin.setUsuario(usuario);
+            menuAdmin.setUsuario(fachada.getUsuario());
             menuAdmin.setClub(club);
             menuAdmin.setLabels();
             menuAdmin.setVisible(true);
@@ -273,7 +280,7 @@ public class Inicio extends javax.swing.JFrame {
                 if(usersList.get(j).getId().equals(user))
                     if(usersList.get(j).getPassword().equals(pass))
                     {
-                        usuario = usersList.get(j);
+                        fachada.setUsuario(usersList.get(j));
                         setClub();
                         encontrado = true;
                     }
@@ -296,7 +303,7 @@ public class Inicio extends javax.swing.JFrame {
                 if(usersList.get(j).getId().equals(user))
                     if(usersList.get(j).getPassword().equals(pass))
                     {
-                        usuario = usersList.get(j);
+                        fachada.setUsuario(usersList.get(j));
                         setClub();
                         encontrado = true;
                     }
@@ -318,7 +325,7 @@ public class Inicio extends javax.swing.JFrame {
     
     public void setUsuario(Usuario usu)
     {
-        usuario = usu;
+        fachada.setUsuario(usu);
     }
     
     public void eliminarUsuario(Usuario usu)
@@ -328,7 +335,7 @@ public class Inicio extends javax.swing.JFrame {
     
     public Usuario getUsuario()
     {
-        return usuario;
+        return fachada.getUsuario();
     }
     public void setFederaciones(ArrayList<Federacion> federaciones)
     {
@@ -350,7 +357,7 @@ public class Inicio extends javax.swing.JFrame {
         for(int i = 0; i < federacionesList.size(); i++)
             for(int j = 0; j < federacionesList.get(i).getClubesList().size(); j++)
             {
-                if(federacionesList.get(i).getClubesList().get(j).getJugadoresList().contains(usuario))
+                if(federacionesList.get(i).getClubesList().get(j).getJugadoresList().contains(fachada.getUsuario()))
                 {
                     club = federacionesList.get(i).getClubesList().get(j);
                 }
@@ -414,9 +421,11 @@ public class Inicio extends javax.swing.JFrame {
     private MenuUsuario menuUsuario;
     private RegistroUsuario registroUsuario;
     private LigaAjedrezDAO ligaAjedrezDAO;
+    private FactoriaPersonas fac;
     private char[] arrayC;
     private String user;
     private String pass;
+    private FachadaUsuario fachada;
     private Usuario usuario;
     private Club club;
     private ArrayList<Usuario> usersList = new ArrayList<Usuario>();

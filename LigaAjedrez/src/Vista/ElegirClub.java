@@ -9,6 +9,7 @@ import Clases.Usuario;
 import Clases.Club;
 import Clases.Federacion;
 import Clases.Torneo;
+import Fachada.FachadaUsuario;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +26,7 @@ public class ElegirClub extends javax.swing.JFrame {
         this.inicio = inicio;
         this.registroUsuario = registroUsuario;
         this.menuUsuario = inicio.getMenuUsuario();
+        fachada = new FachadaUsuario();
     }
 
     /**
@@ -120,16 +122,16 @@ public class ElegirClub extends javax.swing.JFrame {
 
     private void FinalizarRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinalizarRegistroMouseClicked
             club = federacionesList.get(federacionesJList.getSelectedIndex()).getClubesList().get(JListClubes.getSelectedIndex());
-            club.getJugadoresList().add(usuario);
-            usuario.setClub(club.getNombre());
-            usuario.getHistorico().clear();
-            usuario.getHistorico().add(club.getNombre());
-            usersList.add(usuario);
+            club.getJugadoresList().add(fachada.getUsuario());
+            fachada.setClub(club.getNombre());
+            fachada.getHistorico().clear();
+            fachada.getHistorico().add(club.getNombre());
+            usersList.add(fachada.getUsuario());
             
             inicio.setUsuariosList(usersList);
             
             menuUsuario.setClub(club);
-            menuUsuario.setUsuario(usuario);
+            menuUsuario.setUsuario(fachada.getUsuario());
             menuUsuario.setFederaciones(federacionesList);
             menuUsuario.setTorneos(torneosList);
             menuUsuario.setLabels();
@@ -155,7 +157,7 @@ public class ElegirClub extends javax.swing.JFrame {
     }
     public void setUsuario(Usuario usu)
     {
-        usuario = usu; 
+        fachada.setUsuario(usu);
     }
     
     public void setTorneos(ArrayList<Torneo> torneos)
@@ -189,7 +191,7 @@ public class ElegirClub extends javax.swing.JFrame {
     private RegistroUsuario registroUsuario;
     private Inicio inicio;
     private MenuUsuario menuUsuario;
-    private Usuario usuario;
+    private FachadaUsuario fachada;
     private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
     private ArrayList<Usuario> usersList = new ArrayList<Usuario>();
     private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();

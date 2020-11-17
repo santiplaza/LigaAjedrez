@@ -152,4 +152,9 @@ public class Usuario extends Persona{
     public void addELO(int _ELO) {
         this.ELO = ELO + _ELO;
     }
+    
+    public void setDatos(String _id, String _password, String _nombre, String _apellidos, Date _fecha, String _club, boolean _admin)
+    {
+        
+    }
 }

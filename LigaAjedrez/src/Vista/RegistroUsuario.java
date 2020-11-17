@@ -9,6 +9,7 @@ import Clases.Usuario;
 import Clases.Club;
 import Clases.Federacion;
 import Clases.Torneo;
+import Fachada.FachadaUsuario;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -25,7 +26,8 @@ public class RegistroUsuario extends javax.swing.JFrame {
     public RegistroUsuario(Inicio inicio) {
         initComponents();
         this.inicio = inicio;
-        this.elegirClub = new ElegirClub(this,inicio);     
+        this.elegirClub = new ElegirClub(this,inicio);
+        fachada = new FachadaUsuario();
     }
 
     /**
@@ -188,9 +190,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
         {
             if(ComprobarFormatoFecha(FechaNacimientoUser.getText()))
             {
-                usuario = new Usuario(IdUser.getText(), pass, NombreUser.getText(), ApellidosUser.getText(), ConvertirFecha(FechaNacimientoUser.getText()), "null", false);
+                fachada.setUsuario(new Usuario(IdUser.getText(), pass, NombreUser.getText(), ApellidosUser.getText(), ConvertirFecha(FechaNacimientoUser.getText()), "null", false));
                 elegirClub.setTorneos(torneosList);
-                elegirClub.setUsuario(usuario);
+                elegirClub.setUsuario(fachada.getUsuario());
                 elegirClub.setFederaciones(federacionesList);
                 elegirClub.setLabels();
                 elegirClub.Iniciar();
@@ -244,7 +246,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     
     public void setUsuario(Usuario usu)
     {
-        usuario = usu;
+        fachada.setUsuario(usu);
     }
     
     public void setTorneos(ArrayList<Torneo> torneos)
@@ -280,7 +282,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private Inicio inicio;
     private ElegirClub elegirClub;
-    private Usuario usuario;
+    private FachadaUsuario fachada;
     private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
     private ArrayList<Usuario> usersList = new ArrayList<Usuario>();
     private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();

@@ -9,6 +9,7 @@ import Clases.Usuario;
 import Clases.Club;
 import Clases.Federacion;
 import Clases.Torneo;
+import Fachada.FachadaUsuario;
 import java.util.ArrayList;
 
 /**
@@ -28,6 +29,7 @@ public class MenuUsuario extends javax.swing.JFrame {
         this.reservaEntrenamiento = new ReservaEntrenamiento(this);
         this.datosUsuario = new DatosUsuario(this);
         this.torneosUser = new TorneosUser(this);
+        fachada = new FachadaUsuario();
             
     }
 
@@ -163,7 +165,7 @@ public class MenuUsuario extends javax.swing.JFrame {
     private void ReservaEntrenamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReservaEntrenamientoMouseClicked
         this.setVisible(false);
         reservaEntrenamiento.setClub(club);
-        reservaEntrenamiento.setUsuario(usuario);
+        reservaEntrenamiento.setUsuario(fachada.getUsuario());
         reservaEntrenamiento.setLabels();
         reservaEntrenamiento.setVisible(true);
     }//GEN-LAST:event_ReservaEntrenamientoMouseClicked
@@ -171,7 +173,7 @@ public class MenuUsuario extends javax.swing.JFrame {
     private void IntroducirResultadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IntroducirResultadosMouseClicked
         this.setVisible(false);
         introduceResultados.setTorneos(torneosList);
-        introduceResultados.setUsuario(usuario);
+        introduceResultados.setUsuario(fachada.getUsuario());
         introduceResultados.Iniciar();
         introduceResultados.setLabels();
         introduceResultados.setVisible(true);
@@ -187,13 +189,13 @@ public class MenuUsuario extends javax.swing.JFrame {
     private void MiClubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MiClubMouseClicked
         datosClub.setFederaciones(federacionesList);
         datosClub.setClub(club);
-        datosClub.setUsuario(usuario);
+        datosClub.setUsuario(fachada.getUsuario());
         datosClub.setLabels();
         datosClub.setVisible(true);
     }//GEN-LAST:event_MiClubMouseClicked
 
     private void MisDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MisDatosMouseClicked
-        datosUsuario.setUsuario(usuario);
+        datosUsuario.setUsuario(fachada.getUsuario());
         datosUsuario.setLabels();
         datosUsuario.setVisible(true);
     }//GEN-LAST:event_MisDatosMouseClicked
@@ -202,14 +204,14 @@ public class MenuUsuario extends javax.swing.JFrame {
         this.setVisible(false);
         torneosUser.setClub(club);
         torneosUser.setTorneos(torneosList);
-        torneosUser.setUsuario(usuario);
+        torneosUser.setUsuario(fachada.getUsuario());
         torneosUser.setLabels();
         torneosUser.setVisible(true);
     }//GEN-LAST:event_torneosButtonMouseClicked
     
     public void setUsuario(Usuario usu)
     {
-        usuario = usu;
+        fachada.setUsuario(usu);
     }
     
     public void setFederaciones(ArrayList<Federacion> federaciones)
@@ -229,23 +231,23 @@ public class MenuUsuario extends javax.swing.JFrame {
     
     public void setELO()
     {
-        usuario.setELO(1000);
+        fachada.setELO(1000);
         
         for(int i = 0; i < torneosList.size(); i++)
             for(int j = 0; j < torneosList.get(i).getPartidasList().size(); j++)
             {
-                if(torneosList.get(i).getPartidasList().get(j).ganador() == usuario)
+                if(torneosList.get(i).getPartidasList().get(j).ganador() == fachada.getUsuario())
                 {
-                    usuario.addELO(10);
+                    fachada.addELO(10);
                 }
-                else if((torneosList.get(i).getPartidasList().get(j).getJugador1() == usuario) ||(torneosList.get(i).getPartidasList().get(j).getJugador2() == usuario))
-                    usuario.addELO(-5);
+                else if((torneosList.get(i).getPartidasList().get(j).getJugador1() == fachada.getUsuario()) ||(torneosList.get(i).getPartidasList().get(j).getJugador2() == fachada.getUsuario()))
+                    fachada.addELO(-5);
             }
     }
     
     public void setLabels ()
     {
-        usuarioLabel.setText(usuario.getId());
+        usuarioLabel.setText(fachada.getId());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -265,7 +267,7 @@ public class MenuUsuario extends javax.swing.JFrame {
     private IntroduceResultados introduceResultados;
     private DatosUsuario datosUsuario;
     private TorneosUser torneosUser;
-    private Usuario usuario;
+    private FachadaUsuario fachada;
     private Club club;
     private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();
     private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();

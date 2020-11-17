@@ -6,6 +6,7 @@
 package Vista;
 
 import Clases.Usuario;
+import Fachada.FachadaUsuario;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,6 +25,7 @@ public class DatosUsuario extends javax.swing.JFrame {
         this.datosResponsable = new DatosResponsable(this);
         this.registrarResponsable = new RegistrarResponsableInfantil(this);
         this.admin = false;
+        this.fachada = new FachadaUsuario();
         
         datosResponsableButton.setVisible(false);
         nuevaContraseñaLabel.setVisible(false);
@@ -37,6 +39,7 @@ public class DatosUsuario extends javax.swing.JFrame {
         this.datosResponsable = new DatosResponsable(this);
         this.registrarResponsable = new RegistrarResponsableInfantil(this);
         this.admin = true;
+        this.fachada = new FachadaUsuario();
         
         datosResponsableButton.setVisible(false);
         nuevaContraseñaLabel.setVisible(false);
@@ -282,13 +285,13 @@ public class DatosUsuario extends javax.swing.JFrame {
         if(noRegistrado == true)
         {
             datosResponsable.setVisible(true);
-            datosResponsable.setUsuario(usuario);
+            datosResponsable.setUsuario(fachada.getUsuario());
             datosResponsable.setLabels();
         }
         else
         {
             registrarResponsable.setVisible(true);
-            registrarResponsable.setUsuario(usuario);
+            registrarResponsable.setUsuario(fachada.getUsuario());
             noRegistrado = true;
         }
         
@@ -313,13 +316,13 @@ public class DatosUsuario extends javax.swing.JFrame {
         pass = new String(arrayC);
         if(admin)
         {
-            usuario.setPassword(pass);
-            menuAdmin.setUsuario(usuario);
+            fachada.setPassword(pass);
+            menuAdmin.setUsuario(fachada.getUsuario());
         }
         else
         {
-            usuario.setPassword(pass);
-            menuUsuario.setUsuario(usuario);
+            fachada.setPassword(pass);
+            menuUsuario.setUsuario(fachada.getUsuario());
         }
         
         nuevaContraseñaLabel.setVisible(false);
@@ -330,22 +333,22 @@ public class DatosUsuario extends javax.swing.JFrame {
 
     public void setUsuario(Usuario usu)
     {
-        usuario = usu;
+        fachada.setUsuario(usu);
     }
     
     public void setLabels ()
     {
-        nombreUsuario.setText(usuario.getNombre());
-        apellidosUsuario.setText(usuario.getApellidos());
-        fechaUsuario.setText(ConvertirFecha(usuario.getFechaNacimiento()));
-        categoriaUsuario.setText(usuario.getCategoria());
-        eloLabel.setText(String.valueOf(usuario.getELO()));
-        if(!usuario.isMoroso())
-            pagoLabel.setText(ConvertirFecha(usuario.getUltimoPago()));
+        nombreUsuario.setText(fachada.getNombre());
+        apellidosUsuario.setText(fachada.getApellidos());
+        fechaUsuario.setText(ConvertirFecha(fachada.getFechaNacimiento()));
+        categoriaUsuario.setText(fachada.getCategoria());
+        eloLabel.setText(String.valueOf(fachada.getELO()));
+        if(!fachada.isMoroso())
+            pagoLabel.setText(ConvertirFecha(fachada.getUltimoPago()));
         else
-            pagoLabel.setText(ConvertirFecha(usuario.getUltimoPago()) + " (Pago pendiente)");
+            pagoLabel.setText(ConvertirFecha(fachada.getUltimoPago()) + " (Pago pendiente)");
         
-        if(usuario.getCategoria().equals("Infantil") && usuario.getResponsable().getNombre().equals("Default"))
+        if(fachada.getCategoria().equals("Infantil") && fachada.getResponsable().getNombre().equals("Default"))
         {
             datosResponsableButton.setText("Añadir responsable");
             datosResponsableButton.setVisible(true);
@@ -356,9 +359,9 @@ public class DatosUsuario extends javax.swing.JFrame {
         }
         
         historicoJList.removeAll();
-        for (int i = 0; i < usuario.getHistorico().size(); i++)
+        for (int i = 0; i < fachada.getHistorico().size(); i++)
         {
-                historicoJList.add(usuario.getHistorico().get(i), i);
+                historicoJList.add(fachada.getHistorico().get(i), i);
         }
     }
     
@@ -403,7 +406,7 @@ public class DatosUsuario extends javax.swing.JFrame {
     private boolean admin = false;
     private DatosResponsable datosResponsable;
     private RegistrarResponsableInfantil registrarResponsable;
-    private Usuario usuario;
+    private FachadaUsuario fachada;
     private char[] arrayC;
     private String pass;
     boolean noRegistrado;

@@ -20,7 +20,7 @@ public class Gerente extends Persona{
     private int irpf;
     private boolean existe;
     
-  Gerente()
+  public Gerente()
   {
       super();
       this.club = new String ("default");
@@ -32,7 +32,7 @@ public class Gerente extends Persona{
       historico.add(new String("default"));
   }
   
-  Gerente(String _nombre, String _apellidos, Date _fecha)
+  public Gerente(String _nombre, String _apellidos, Date _fecha)
   {
       super(_nombre,_apellidos,_fecha);
       this.club = new String ("default");
@@ -44,7 +44,7 @@ public class Gerente extends Persona{
       historico.add(new String("default"));
   }
   
-  Gerente(String _nombre, String _apellidos, String _club, int _nomina, int _irpf)
+  public Gerente(String _nombre, String _apellidos, String _club, int _nomina, int _irpf)
   {
       super(_nombre,_apellidos,new Date(99,4,1));
       this.club = new String (_club);
@@ -56,7 +56,7 @@ public class Gerente extends Persona{
       historico.add(new String(_club));
   }
   
-  Gerente(String _club, int _nomina, int _irpf)
+  public Gerente(String _club, int _nomina, int _irpf)
   {
       super();
       this.club = new String (_club);
