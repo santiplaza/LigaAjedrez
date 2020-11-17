@@ -135,30 +135,30 @@ public class Cuadro8 extends javax.swing.JFrame {
         });
 
         semifinal1Jugador1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        semifinal1Jugador1.setText("jLabel5");
+        semifinal1Jugador1.setText("G1");
 
         jLabel5.setText("vs.");
 
         semifinal2Jugador1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        semifinal2Jugador1.setText("jLabel6");
+        semifinal2Jugador1.setText("G3");
 
         semifinal2Jugador2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        semifinal2Jugador2.setText("jLabel6");
+        semifinal2Jugador2.setText("G4");
 
         semifinal1Jugador2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        semifinal1Jugador2.setText("jLabel6");
+        semifinal1Jugador2.setText("G2");
 
         jLabel6.setText("vs.");
 
         jLabel7.setText("Final:");
 
         finalJugador1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        finalJugador1.setText("jLabel8");
+        finalJugador1.setText("G1");
 
         jLabel8.setText("vs");
 
         finalJugador2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        finalJugador2.setText("jLabel9");
+        finalJugador2.setText("G2");
 
         puntosJugador7.setText("-");
 
@@ -285,7 +285,7 @@ public class Cuadro8 extends javax.swing.JFrame {
                                                     .addComponent(semifinal1Jugador2))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(puntosJugador2Semifinal1)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(finalJugador2)
                                             .addGroup(layout.createSequentialGroup()
@@ -340,7 +340,7 @@ public class Cuadro8 extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(puntosJugador5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(simular3Button, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(96, Short.MAX_VALUE))))
+                        .addContainerGap(126, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(251, 251, 251)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,8 +366,7 @@ public class Cuadro8 extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(puntosJugador5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jugador5Label))
-                        .addGap(18, 18, 18)))
+                            .addComponent(jugador5Label))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -438,17 +437,17 @@ public class Cuadro8 extends javax.swing.JFrame {
                             .addComponent(jugador4Label)
                             .addComponent(puntosJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(puntosFinal1)
-                    .addComponent(puntosFinal2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(puntosFinal2)
+                    .addComponent(puntosFinal1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(simular2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(simular4Button, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(simular7Button, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addComponent(volverButton)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();

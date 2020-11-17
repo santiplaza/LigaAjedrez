@@ -9,6 +9,7 @@ import Clases.Usuario;
 import Clases.Club;
 import Clases.Federacion;
 import Clases.Torneo;
+import DAO.LigaAjedrezDAO;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -25,6 +26,10 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        
+        ligaAjedrezDAO = new LigaAjedrezDAO();
+        
+        System.out.println("Conexion:" + ligaAjedrezDAO.isConnected());
   
         usersList.add(new Usuario("miguel99", "hola", "Miguel", "Ferrer Fornali", new Date(99,3,12), "Malaga", false));
         usersList.add(new Usuario("enrike1221", "12345", "Enrique", "Juan Sempere", new Date(99,4,1),"Valencia CF", true));
@@ -75,8 +80,7 @@ public class Inicio extends javax.swing.JFrame {
                 }
         }
         
-        
-        for(int j = 0; j < 8;j++)
+        for(int j = 0; j < 7;j++)
         {
             torneosList.get(1).getJugadoresList().add(usersList.get(j));
         }
@@ -409,6 +413,7 @@ public class Inicio extends javax.swing.JFrame {
     private MenuAdmin menuAdmin;
     private MenuUsuario menuUsuario;
     private RegistroUsuario registroUsuario;
+    private LigaAjedrezDAO ligaAjedrezDAO;
     private char[] arrayC;
     private String user;
     private String pass;
