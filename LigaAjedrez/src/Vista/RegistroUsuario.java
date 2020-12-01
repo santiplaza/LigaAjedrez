@@ -9,6 +9,7 @@ import Clases.Usuario;
 import Clases.Club;
 import Clases.Federacion;
 import Clases.Torneo;
+import DAO.LigaAjedrezDAO;
 import Fachada.FachadaUsuario;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +29,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         this.inicio = inicio;
         this.elegirClub = new ElegirClub(this,inicio);
         fachada = new FachadaUsuario();
+        ligaAjedrezDAO = new LigaAjedrezDAO();
     }
 
     /**
@@ -190,7 +192,8 @@ public class RegistroUsuario extends javax.swing.JFrame {
         {
             if(ComprobarFormatoFecha(FechaNacimientoUser.getText()))
             {
-                fachada.setUsuario(new Usuario(IdUser.getText(), pass, NombreUser.getText(), ApellidosUser.getText(), ConvertirFecha(FechaNacimientoUser.getText()), "null", false));
+                fachada.setUsuario(new Usuario(IdUser.getText(), pass, NombreUser.getText(), ApellidosUser.getText(), ConvertirFecha(FechaNacimientoUser.getText()), "null", false, 0));
+                
                 elegirClub.setTorneos(torneosList);
                 elegirClub.setUsuario(fachada.getUsuario());
                 elegirClub.setFederaciones(federacionesList);
@@ -283,9 +286,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private Inicio inicio;
     private ElegirClub elegirClub;
     private FachadaUsuario fachada;
+    private LigaAjedrezDAO ligaAjedrezDAO;
     private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
     private ArrayList<Usuario> usersList = new ArrayList<Usuario>();
     private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();
     private char[] arrayC;
     private String pass, pass2;
+    
 }

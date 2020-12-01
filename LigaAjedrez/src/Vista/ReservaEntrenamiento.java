@@ -49,7 +49,7 @@ public class ReservaEntrenamiento extends javax.swing.JFrame {
         Date FechaIngreso = new Date();
         dateChooser.setDate(FechaIngreso);
         dateChooser.setMinSelectableDate(FechaIngreso);
-        //dateChooser.setMaxSelectableDate(new Date(FechaIngreso.getDay()+5, FechaIngreso.getMonth()+2, FechaIngreso.getYear()+1));
+        dateChooser.setMaxSelectableDate(new Date(FechaIngreso.getDay()+5, FechaIngreso.getMonth()+2, FechaIngreso.getYear()+1));
         
         
         panelCalendario.add(dateChooser);

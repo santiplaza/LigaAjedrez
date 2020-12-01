@@ -8,6 +8,7 @@ package Vista;
 import Clases.Club;
 import Clases.Gerente;
 import Clases.Usuario;
+import DAO.LigaAjedrezDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -24,6 +25,7 @@ public class AñadirGerente extends javax.swing.JFrame {
     public AñadirGerente(AdministracionClubs administracionClubs) {
        initComponents();
        this.administracionClubs = administracionClubs;
+       ligaAjedrezDAO = new LigaAjedrezDAO();
     }
 
     /**
@@ -145,7 +147,8 @@ public class AñadirGerente extends javax.swing.JFrame {
         
         if(ComprobarFormatoFecha(fechaNacimientoText.getText()))
         {
-            club.getGerente().setDatos( nombreGerente.getText(), apellidosGerente.getText(), club.getNombre(), nomina, irpf, ConvertirFecha(fechaNacimientoText.getText()));
+            club.getGerente().setDatos(nombreGerente.getText(), apellidosGerente.getText(), club.getNombre(), nomina, irpf, ConvertirFecha(fechaNacimientoText.getText()));
+            ligaAjedrezDAO.RegistrarGerente(nombreGerente.getText(), apellidosGerente.getText(), fechaNacimientoText.getText(), club.getNombre(), irpf, nomina);
             administracionClubs.setClubes(clubesList);
             administracionClubs.setLabels();
             this.setVisible(false);
@@ -216,7 +219,7 @@ public class AñadirGerente extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     AdministracionClubs administracionClubs;
     private ArrayList<Club> clubesList = new ArrayList<Club>();
+    private LigaAjedrezDAO ligaAjedrezDAO;
     private Club club;
-    private Gerente g;
 }
 

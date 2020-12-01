@@ -27,6 +27,8 @@ public class FactoriaPersonas {
         if(tipo == usu)
         {  
             Usuario u = new Usuario();
+            
+            
             return u;
         }
         else if(tipo == gen)
@@ -34,7 +36,8 @@ public class FactoriaPersonas {
             Gerente g = new Gerente();
             return g;
         }
-        else{
+        else
+        {
             Entrenador e = new Entrenador();
             return e;
         }

@@ -67,8 +67,10 @@ public class AdministracionClubs extends javax.swing.JFrame {
                 VolverMouseClicked(evt);
             }
         });
+        getContentPane().add(Volver);
 
         jLabel1.setText("Lista de clubes:");
+        getContentPane().add(jLabel1);
 
         CrearClub.setText("Crear club");
         CrearClub.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,12 +78,16 @@ public class AdministracionClubs extends javax.swing.JFrame {
                 CrearClubMouseClicked(evt);
             }
         });
+        getContentPane().add(CrearClub);
 
         jLabel2.setText("Nombre:");
+        getContentPane().add(jLabel2);
 
         jLabel3.setText("Gerente:");
+        getContentPane().add(jLabel3);
 
         jLabel4.setText("Entrenador:");
+        getContentPane().add(jLabel4);
 
         verJugadoresButton.setText("Ver jugadores");
         verJugadoresButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,6 +95,7 @@ public class AdministracionClubs extends javax.swing.JFrame {
                 verJugadoresButtonMouseClicked(evt);
             }
         });
+        getContentPane().add(verJugadoresButton);
 
         verEntrenadorButton.setText("Gestionar entrenador");
         verEntrenadorButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,12 +103,18 @@ public class AdministracionClubs extends javax.swing.JFrame {
                 verEntrenadorButtonMouseClicked(evt);
             }
         });
+        getContentPane().add(verEntrenadorButton);
 
         JListClubes.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 JListClubesItemStateChanged(evt);
             }
         });
+        getContentPane().add(JListClubes);
+        getContentPane().add(nombreClub);
+        getContentPane().add(nombreGerente);
+        getContentPane().add(entrenador1Club);
+        getContentPane().add(entrenador2Club);
 
         gestionarGerenteButton.setText("Gestionar gerente");
         gestionarGerenteButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,6 +122,7 @@ public class AdministracionClubs extends javax.swing.JFrame {
                 gestionarGerenteButtonMouseClicked(evt);
             }
         });
+        getContentPane().add(gestionarGerenteButton);
 
         añadirGerenteButton.setText("Añadir gerente");
         añadirGerenteButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -116,6 +130,7 @@ public class AdministracionClubs extends javax.swing.JFrame {
                 añadirGerenteButtonMouseClicked(evt);
             }
         });
+        getContentPane().add(añadirGerenteButton);
 
         añadirEntrenadorButton.setText("Añadir entrenador");
         añadirEntrenadorButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,94 +138,7 @@ public class AdministracionClubs extends javax.swing.JFrame {
                 añadirEntrenadorButtonMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(CrearClub))
-                            .addComponent(Volver)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(JListClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreClub)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(nombreGerente)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(añadirGerenteButton))
-                                            .addComponent(gestionarGerenteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(26, 26, 26)
-                                .addComponent(entrenador1Club))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(entrenador2Club))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(verJugadoresButton)
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(añadirEntrenadorButton)
-                            .addComponent(verEntrenadorButton))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CrearClub, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(nombreClub))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(nombreGerente)
-                            .addComponent(gestionarGerenteButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(entrenador1Club)
-                            .addComponent(añadirGerenteButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(entrenador2Club))
-                    .addComponent(JListClubes, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(verJugadoresButton)
-                    .addComponent(verEntrenadorButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(añadirEntrenadorButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(Volver)
-                .addGap(22, 22, 22))
-        );
+        getContentPane().add(añadirEntrenadorButton);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

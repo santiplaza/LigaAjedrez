@@ -9,6 +9,7 @@ import Clases.Usuario;
 import Clases.Club;
 import Clases.Federacion;
 import Clases.Torneo;
+import DAO.LigaAjedrezDAO;
 import Fachada.FachadaUsuario;
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public class ElegirClub extends javax.swing.JFrame {
         this.registroUsuario = registroUsuario;
         this.menuUsuario = inicio.getMenuUsuario();
         fachada = new FachadaUsuario();
+        ligaAjedrezDAO = new LigaAjedrezDAO();
     }
 
     /**
@@ -128,6 +130,8 @@ public class ElegirClub extends javax.swing.JFrame {
             fachada.getHistorico().add(club.getNombre());
             usersList.add(fachada.getUsuario());
             
+            int id = ligaAjedrezDAO.RegistrarUsuario(fachada.getNombre(), fachada.getApellidos(), fachada.getFechaNacimiento(), fachada.getCategoria(),fachada.getId(), fachada.getPassword(), club.getNombre());
+            fachada.getUsuario().setIdUsuario(id);
             inicio.setUsuariosList(usersList);
             
             menuUsuario.setClub(club);
@@ -192,6 +196,7 @@ public class ElegirClub extends javax.swing.JFrame {
     private Inicio inicio;
     private MenuUsuario menuUsuario;
     private FachadaUsuario fachada;
+    private LigaAjedrezDAO ligaAjedrezDAO;
     private ArrayList<Federacion> federacionesList = new ArrayList<Federacion>();
     private ArrayList<Usuario> usersList = new ArrayList<Usuario>();
     private ArrayList<Torneo> torneosList = new ArrayList<Torneo>();

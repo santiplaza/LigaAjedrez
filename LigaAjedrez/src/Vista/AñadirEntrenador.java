@@ -9,6 +9,7 @@ import Clases.Club;
 import Clases.Entrenador;
 import Clases.Gerente;
 import Clases.Usuario;
+import DAO.LigaAjedrezDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class AñadirEntrenador extends javax.swing.JFrame {
     public AñadirEntrenador(AdministracionClubs administracionClubs) {
        initComponents();
        this.administracionClubs = administracionClubs;
+       ligaAjedrezDAO = new LigaAjedrezDAO();
     }
 
     /**
@@ -117,7 +119,9 @@ public class AñadirEntrenador extends javax.swing.JFrame {
         
         if(ComprobarFormatoFecha(fechaNacimientoText.getText()))
         {
-            club.getEntrenador().setDatos( nombreGerente.getText(), apellidosGerente.getText(), club.getNombre(), ConvertirFecha(fechaNacimientoText.getText()), true);
+            club.getEntrenador().setDatos(nombreGerente.getText(), apellidosGerente.getText(), club.getNombre(), ConvertirFecha(fechaNacimientoText.getText()), true);
+            ligaAjedrezDAO.RegistrarEntrenador(nombreGerente.getText(), apellidosGerente.getText(), ConvertirFecha(fechaNacimientoText.getText()), club.getNombre());
+            
             administracionClubs.setClubes(clubesList);
             administracionClubs.setLabels();
             this.setVisible(false);
@@ -183,8 +187,8 @@ public class AñadirEntrenador extends javax.swing.JFrame {
     private javax.swing.JTextField nombreGerente;
     // End of variables declaration//GEN-END:variables
     AdministracionClubs administracionClubs;
+    private LigaAjedrezDAO ligaAjedrezDAO;
     private ArrayList<Club> clubesList = new ArrayList<Club>();
     private Club club;
-    private Entrenador e;
 }
 

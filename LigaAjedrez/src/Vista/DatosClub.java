@@ -8,6 +8,7 @@ package Vista;
 import Clases.Usuario;
 import Clases.Club;
 import Clases.Federacion;
+import DAO.LigaAjedrezDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -24,6 +25,7 @@ public class DatosClub extends javax.swing.JFrame {
     public DatosClub(MenuUsuario menuUsuario, Inicio inicio) {
         initComponents();
         this.menuUsuario = menuUsuario;
+        this.ligaAjedrezDAO = new LigaAjedrezDAO();
         this.inicio = inicio;
         this.admin = false;
         federacionesJList.setVisible(false);
@@ -293,6 +295,7 @@ public class DatosClub extends javax.swing.JFrame {
             clubAlterno.getJugadoresList().add(usuario);
             usuario.setClub(clubAlterno.getNombre());
             usuario.getHistorico().add(clubAlterno.getNombre());
+            ligaAjedrezDAO.CambiarJugadorClub(usuario.getIdUsuario(), clubAlterno.getNombre());
             setClub(clubAlterno);
         }
         else
@@ -301,7 +304,8 @@ public class DatosClub extends javax.swing.JFrame {
             clubAlterno.getJugadoresList().add(usuario);
             usuario.setClub(clubAlterno.getNombre());
             usuario.getHistorico().add(clubAlterno.getNombre());
-            setClub(clubAlterno);
+            ligaAjedrezDAO.CambiarJugadorClub(usuario.getIdUsuario(), clubAlterno.getNombre());
+            setClub(clubAlterno);        
         }
         setLabels();
     }//GEN-LAST:event_confirmarButtonMouseClicked
@@ -391,6 +395,7 @@ public class DatosClub extends javax.swing.JFrame {
     private MenuUsuario menuUsuario;
     private Inicio inicio;
     private MenuAdmin menuAdmin;
+    private LigaAjedrezDAO ligaAjedrezDAO;
     private boolean admin = false;
     private Usuario usuario;
     private Club club;

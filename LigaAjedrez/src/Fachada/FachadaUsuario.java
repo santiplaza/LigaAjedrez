@@ -13,6 +13,10 @@ import java.util.Date;
 /**
  *
  * @author enrique
+ * ***************************
+ * La fachada esta implementada en Inicio y durante todo el proceso de registro de un jugador.
+ * También se utiliza en VerDatos
+ * *******************************
  */
 public class FachadaUsuario {
     
@@ -37,6 +41,11 @@ public class FachadaUsuario {
     public void setPassword(String pass)
     {
         usuario.setPassword(pass);
+    }
+    
+    public String getPassword()
+    {
+        return usuario.getPassword();
     }
     
     public String getNombre()
@@ -97,7 +106,7 @@ public class FachadaUsuario {
     }
     
     public String getId() {
-        return usuario.getId();
+        return usuario.getUsername();
     }
     
     public void setClub(String _club) {

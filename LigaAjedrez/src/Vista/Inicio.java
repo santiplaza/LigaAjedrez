@@ -30,72 +30,16 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         
         ligaAjedrezDAO = new LigaAjedrezDAO();
+        System.out.println("Conexion:" + ligaAjedrezDAO.isConnected());
+        
         fachada = new FachadaUsuario();
         fac = new FactoriaPersonas();
         
-        System.out.println("Conexion:" + ligaAjedrezDAO.isConnected());
-  
-        usuario = (Usuario)fac.CrearPersona(FactoriaPersonas.tipoPersona.USUARIO);
-        usuario.setDatos("miguel99", "hola", "Miguel", "Ferrer Fornali", new Date(99,3,12), "Malaga", false);
-            
-        usersList.add(usuario);
-        usersList.add(new Usuario("enrike1221", "12345", "Enrique", "Juan Sempere", new Date(99,4,1),"Valencia CF", true));
-        usersList.add(new Usuario("a", "a", "Javier", "Salcedo Roman", new Date(117,7,23), "Silos CF", true));   
-        usersList.add(new Usuario("igrebou", "hola", "Ivan", "Gregori Bou", new Date(94,7,23), "Sevilla FC", false));
-        usersList.add(new Usuario("b", "b", "Jose", "Ferrer Fornali", new Date(99,3,12), "Villareal CF", false));
-        usersList.add(new Usuario("c", "c", "Manu", "Girones Fornali", new Date(99,4,1),"Cordoba SA", false));
-        usersList.add(new Usuario("d", "d", "Fran", "Salcedo Roman", new Date(117,7,23), "Madrid Ajedrecistas", false));   
-        usersList.add(new Usuario("e", "e", "Alberto", "Gregori Bou", new Date(94,7,23), "SA Leganes", false));
-        usersList.add(new Usuario("pablomi99", "pablo", "Pablo", "Arnau Soler", new Date(94,7,23), "Valladolid", false));
-        
-        usersList.get(0).setUltimoPago(new Date(119,6,22));
-        usersList.get(1).setUltimoPago(new Date(120,9,21));
-        usersList.get(2).setUltimoPago(new Date(119,11,6));
-        usersList.get(3).setUltimoPago(new Date(118,10,3));
-        usersList.get(4).setUltimoPago(new Date(120,4,8));
-        
-        this.federacionesList.add(new Federacion("Valencia"));
-        this.federacionesList.add(new Federacion("Andalucia"));
-        this.federacionesList.add(new Federacion("Madrid"));
-        federacionesList.get(0).getClubesList().add(new Club("Valencia CF", "Marcos", "Sanfelix",1200, 20, "Curro", "Jimenez","Valencia CF"));
-        federacionesList.get(0).getClubesList().add(new Club("Silos CF", "Mario", "Guzman",1600, 25, "Alvaro", "Quintanilla", "Silos CF"));
-        federacionesList.get(0).getClubesList().add(new Club("Villareal CF", "Kike", "Saez",1200, 20, "Victor", "Fuentes", "Villareal CF"));
-        federacionesList.get(1).getClubesList().add(new Club("Malaga", "Jesus", "Santos",1000, 15, "Manuel", "Soler", "Malaga"));
-        federacionesList.get(1).getClubesList().add(new Club("Sevilla FC", "Manuel", "Saez",1000, 15, "Paco", "Soler", "Sevilla FC"));
-        federacionesList.get(1).getClubesList().add(new Club("Cordoba SA", "Nestor", "De Guillermo",1600, 25, "ALberto", "Quintanilla", "Cordoba SA"));
-        federacionesList.get(2).getClubesList().add(new Club("Madrid Ajedrecistas", "Manolo", "Montiel", 1300, 10, "Raul", "Gil", "Madrid Ajedrecistas"));
-        federacionesList.get(2).getClubesList().add(new Club("SA Leganes", "Sergio", "Soriano", 1300, 10, "Paco ", "Peña", "SA Leganes"));
-        federacionesList.get(2).getClubesList().add(new Club("Valladolid", "Guillermo", "Soler", 1300, 10, "Fran", "Sanz", "Valladolid"));
-        
-        torneosList.add(new Torneo("Copa Valenciana ", federacionesList.get(0),4,true));
-        torneosList.add(new Torneo("Copa Madrileña", federacionesList.get(2),8, true));
-        
-        for(int x = 0; x < federacionesList.size(); x++)
-        {
-            for(int i = 0; i < federacionesList.get(x).getClubesList().size();i++)
-                for(int j = 0; j < usersList.size();j++)
-                {
-                    if (federacionesList.get(x).getClubesList().get(i).getNombre().equals(usersList.get(j).getClub()))
-                    {
-                        federacionesList.get(x).getClubesList().get(i).addJugador(usersList.get(j));
-                    }
-                    
-                    if(usersList.get(j).getUltimoPago().compareTo(new Date(120,0,1)) == -1)
-                    {
-                        usersList.get(j).setMoroso(true);
-                    }
-                }
-        }
-        
-        for(int j = 0; j < 7;j++)
-        {
-            torneosList.get(1).getJugadoresList().add(usersList.get(j));
-        }
-        for(int j = 0; j < 4;j++)
-        {
-            torneosList.get(0).getJugadoresList().add(usersList.get(j));
-        }
-        
+        ligaAjedrezDAO.CargarDatosUsuarios(usersList);
+        ligaAjedrezDAO.CargarDatosFederaciones(federacionesList);
+        ligaAjedrezDAO.CargarDatosClubes(federacionesList, usersList);
+        ligaAjedrezDAO.CargarTorneos(torneosList, federacionesList);
+       
         for(int j = 0; j < torneosList.size();j++)
         {
             torneosList.get(j).Iniciar();
@@ -277,7 +221,7 @@ public class Inicio extends javax.swing.JFrame {
             for(int j = 0; j < usersList.size();j++)
             {
                 if(!usersList.get(j).isAdmin())
-                if(usersList.get(j).getId().equals(user))
+                if(usersList.get(j).getUsername().equals(user))
                     if(usersList.get(j).getPassword().equals(pass))
                     {
                         fachada.setUsuario(usersList.get(j));
@@ -300,7 +244,7 @@ public class Inicio extends javax.swing.JFrame {
         for(int j = 0; j < usersList.size();j++)
             {
                 if(usersList.get(j).isAdmin())
-                if(usersList.get(j).getId().equals(user))
+                if(usersList.get(j).getUsername().equals(user))
                     if(usersList.get(j).getPassword().equals(pass))
                     {
                         fachada.setUsuario(usersList.get(j));

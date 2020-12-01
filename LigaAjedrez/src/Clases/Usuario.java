@@ -15,7 +15,8 @@ import java.util.Date;
  */
 public class Usuario extends Persona{
     
-    private String id;
+    private String username;
+    private int idUsuario;
     private String password;
     private String categoria;
     private String club;
@@ -29,7 +30,8 @@ public class Usuario extends Persona{
     public Usuario()
     {
         super();
-        this.id = new String ("userDefault");
+        this.username = new String ("userDefault");
+        this.idUsuario = 0;
         this.password = new String ("default");
         this.categoria = new String ("default");
         this.club = new String ("Mi club ");
@@ -42,10 +44,11 @@ public class Usuario extends Persona{
         historico.add(new String("default"));
     }
     
-    public Usuario(String _id, String _password, String _nombre, String _apellidos, Date _fecha, String _club, boolean _admin)
+    public Usuario(String _id, String _password, String _nombre, String _apellidos, Date _fecha, String _club, boolean _admin, int _idUsuario)
     {
         super(_nombre,_apellidos,_fecha);
-        this.id = new String (_id);
+        this.username = new String (_id);
+        this.idUsuario = _idUsuario;
         this.password = new String (_password);
         this.club = new String (_club);
         this.ultimoPago = new Date(120,0,15);;
@@ -63,19 +66,26 @@ public class Usuario extends Persona{
             this.categoria = new String("Infantil");
             this.responsable = new Persona();
         }
-            
-            
-        
+
         historico.add(new String(_club));
     }
 
-    public String getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
 
     public String getPassword() {
         return password;
@@ -155,6 +165,24 @@ public class Usuario extends Persona{
     
     public void setDatos(String _id, String _password, String _nombre, String _apellidos, Date _fecha, String _club, boolean _admin)
     {
+        this.username = _id;
+        this.password = _password;
+        this.club = _club;
+        this.ultimoPago = new Date(120,0,15);;
+        this.ELO = 1000;
+        this.moroso = false;
+        this.admin = _admin;
         
+        if(this.getFechaNacimiento().compareTo(new Date(101,0,0)) == -1)
+            this.categoria = new String("Senior");
+        else if(this.getFechaNacimiento().compareTo(new Date(102,0,0)) == -1 && this.getFechaNacimiento().compareTo(new Date(104,0,0)) == 1)
+            this.categoria = new String("Junior");
+        else
+        {
+            this.categoria = new String("Infantil");
+            this.responsable = new Persona();
+        }
+        
+        historico.add(new String(_club));
     }
 }
